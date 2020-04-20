@@ -14,5 +14,23 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('App.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+//    return (int) $user->id === (int) $id;
+    return true;
+});
+
+Broadcast::channel('lesson_database_private-App.User.{id}', function ($user, $id) {
+//    return (int) $user->id === (int) $id;
+    return true;
+});
+
+Broadcast::channel('chat', function ($user, $orderId) {
+    return true;
+});
+
+Broadcast::channel('lesson_database_chat', function ($user, $orderId) {
+    return true;
+});
+
+Broadcast::channel('TestEvent', function ($user, $orderId) {
+    return true;
 });

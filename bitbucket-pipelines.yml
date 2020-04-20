@@ -1,0 +1,33 @@
+options:
+  docker: true
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: code style
+          size: 2x
+          image: php:7.2-cli
+          script:
+            - curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar && php phpcs.phar --extensions=php --standard=PSR2 app/
+      - step:
+          name: unit tests
+          size: 2x
+          deployment: test
+          image: docker:stable
+          script:
+            - set -eu
+            - apk add --no-cache py-pip bash
+            - pip install --no-cache-dir docker-compose~=1.23.0
+            - docker-compose -f docker-compose-pipeline.yml down
+            - docker-compose -f docker-compose-pipeline.yml up -d
+            - docker-compose -f docker-compose-pipeline.yml exec -T php-fpm touch storage/db/testdb.sqlite
+            - docker-compose -f docker-compose-pipeline.yml exec -T php-fpm composer install
+            - docker-compose -f docker-compose-pipeline.yml exec -T php-fpm php artisan doctrine:clear:metadata:cache
+            - docker-compose -f docker-compose-pipeline.yml exec -T php-fpm vendor/bin/phpunit
+
+definitions:
+  caches:
+  vendor: ${BITBUCKET_CLONE_DIR}/vendor
+  services:
+    docker:
+      memory: 4096

@@ -67,6 +67,20 @@ services:
      - .:${APP_PROJECT_PATH}
     command: "npm run dev"
 
+  node_app:
+    build: ./node_app
+    volumes:
+      - ./node_app:/app/node_app
+    ports:
+      - 6001:6001
+    env_file:
+      - ./stack/environment/development/node.env
+    depends_on:
+      - redis
+    links:
+      - redis
+    restart: always
+
   mailhog:
     image: mailhog/mailhog:v1.0.0
     ports:

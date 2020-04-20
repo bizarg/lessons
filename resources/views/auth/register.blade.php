@@ -66,6 +66,9 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+                                <a href="{{ route('login.network', 'facebook') }}"><div class="btn btn-md btn-primary">
+                                        <i class="fa fa-facebook"></i> Login with Facebook</div>
+                                </a>
                             </div>
                         </div>
                     </form>
