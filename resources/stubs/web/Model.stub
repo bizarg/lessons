@@ -1,0 +1,22 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Domain\{{modelName}};
+
+use Illuminate\Database\Eloquent\Model;
+
+/**
+ * Class {{modelName}}
+ * @package App\Domain\{{modelName}}
+ */
+class {{modelName}} extends Model
+{
+    /** @var array */
+    public const ALLOWED_SORT_FIELDS = [
+        'createdAt' => '{{modelNamePluralLowerCase}}.created_at'
+    ];
+
+    /** @var string */
+    protected $table = '{{modelNamePluralLowerCase}}';
+}

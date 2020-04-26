@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Api\Application\{{modelName}}\Register{{modelName}};
+
+use Api\Http\Requests\{{modelName}}\{{modelName}}Request;
+use Illuminate\Http\Request;
+use Rosamarsky\CommandBus\Command;
+
+/**
+ * Class Register{{modelName}}
+ * @package App\Application\{{modelName}}
+ */
+class Register{{modelName}} implements Command
+{
+    /**
+     * Register{{modelName}} constructor.
+     */
+    public function __construct(
+    ) {
+    }
+
+    /**
+     * @param Request|{{modelName}}Request $request
+     * @return Register{{modelName}}
+     */
+    public static function fromRequest(Request $request)
+    {
+        return (new self(
+        ));
+    }
+}

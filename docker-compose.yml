@@ -37,7 +37,7 @@ services:
      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   php-fpm:
-    image: itdevgroup/php-fpm7.2
+    image: itdevgroup/php-fpm7.4
     depends_on:
      - database
      - redis

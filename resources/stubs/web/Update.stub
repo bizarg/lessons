@@ -1,0 +1,48 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Application\{{modelName}}\Update{{modelName}};
+
+use App\Domain\{{modelName}}\{{modelName}};
+use App\Http\Requests\{{modelName}}\{{modelName}}Request;
+use Illuminate\Http\Request;
+use Rosamarsky\CommandBus\Command;
+
+/**
+ * Class Update{{modelName}}
+ * @package App\Application\{{modelName}}\Update{{modelName}}
+ */
+class Update{{modelName}} implements Command
+{
+    /** @var {{modelName}} */
+    private {{modelName}} ${{modelNameSingularLowerCase}};
+
+    /**
+     * Update{{modelName}} constructor.
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     */
+    public function __construct(
+        {{modelName}} ${{modelNameSingularLowerCase}}
+    ) {
+        $this->{{modelNameSingularLowerCase}} = ${{modelNameSingularLowerCase}};
+    }
+
+    /**
+     * @param Request|{{modelName}}Request $request
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     * @return self
+     */
+    public static function fromRequest(Request $request, {{modelName}} ${{modelNameSingularLowerCase}}): self
+    {
+        return (new self(
+        	${{modelNameSingularLowerCase}}
+        ));
+    }
+
+    /** @return {{modelName}} */
+    public function {{modelNameSingularLowerCase}}(): {{modelName}}
+    {
+        return $this->{{modelNameSingularLowerCase}};
+    }
+}

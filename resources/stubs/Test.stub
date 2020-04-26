@@ -1,0 +1,156 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Http\Response;
+use Tests\Feature\TestCase as BaseTestCase;
+
+/**
+ * Class {{modelName}}Test
+ * @package Tests\Feature
+ */
+class {{modelName}}Test extends BaseTestCase
+{
+    /**
+     * @test
+     */
+    public function shouldIndex{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+
+        $this
+            ->json('get', route('api.{{modelNamePluralLowerCase}}.index'), [], $headers)
+            ->assertJson([
+                'data' => [
+                    ['type' => '{{modelNameSingularLowerCase}}']
+                ]
+            ])
+            ->assertJsonStructure([
+                'data' => [
+                    [
+                        'type',
+                        'id',
+                        'attributes' => [
+                            'createdAt',
+                            'updatedAt',
+                        ],
+                    ]
+                ],
+                'meta' => [
+                    'totalPages',
+                    'totalItems',
+                ],
+            ])
+            ->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldShow{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+        $show = 1;
+
+        $this
+            ->json('get', route('api.{{modelNamePluralLowerCase}}.show', $show), [], $headers)
+            ->assertJson([
+                'data' => [
+                    'type' => '{{modelNameSingularLowerCase}}',
+                    'id' => $show,
+                ]
+            ])
+            ->assertStatus(Response::HTTP_OK);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldStore{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+        $data = [];
+
+        $this
+            ->json('post', route('api.{{modelNamePluralLowerCase}}.store'), $data, $headers)
+            ->assertStatus(Response::HTTP_CREATED);
+
+        $this->assertDatabaseHas('{{modelNamePluralLowerCase}}', [
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldErrorStore{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+
+        $this
+            ->json('post', route('api.{{modelNamePluralLowerCase}}.store'), [], $headers)
+            ->assertJson([
+                'errors' => [
+                ]
+            ])
+            ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldUpdate{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+        $update = 1;
+        $data = [
+        ];
+
+        $this
+            ->json('put', route('api.{{modelNamePluralLowerCase}}.update', $update), $data, $headers)
+            ->assertStatus(Response::HTTP_OK);
+
+        $this->assertDatabaseHas('{{modelNamePluralLowerCase}}', [
+        ]);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldDelete{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+        $delete = 1;
+
+        $this
+            ->json('delete', route('api.{{modelNamePluralLowerCase}}.destroy', $delete), [], $headers)
+            ->assertStatus(Response::HTTP_NO_CONTENT);
+
+        $this->assertDatabaseMissing('{{modelNamePluralLowerCase}}', ['id' => $delete]);
+    }
+
+
+    /**
+     * @test
+     */
+    public function shouldErrorsDelete{{modelName}}()
+    {
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
+        $delete = 999;
+
+        $this
+            ->json('delete', route('api.{{modelNamePluralLowerCase}}.destroy', $delete), [], $headers)
+                ->assertJson([
+                    'errors' => [
+                        $this->errorPageNotFound()
+                    ]
+                ])
+                ->assertStatus(Response::HTTP_NOT_FOUND);
+    }
+}

@@ -36,3 +36,6 @@ clear:
 
 composer-dump:
 	docker-compose exec php-fpm composer dumpautoload
+
+dumpautoload:
+	docker-compose exec php-fpm composer dumpautoload

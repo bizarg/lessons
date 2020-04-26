@@ -1,0 +1,33 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Api\Application\{{modelName}}\Delete{{modelName}};
+
+use Api\Domain\{{modelName}}\{{modelName}};
+use Rosamarsky\CommandBus\Command;
+
+/**
+ * Class Delete{{modelName}}
+ * @package Api\Application\{{modelName}}
+ */
+class Delete{{modelName}} implements Command
+{
+    /** @var {{modelName}} */
+    private {{modelName}} ${{modelNameSingularLowerCase}};
+
+    /**
+     * Delete{{modelName}} constructor.
+     * @param {{modelName}} ${{modelNameSingularLowerCase}}
+     */
+    public function __construct({{modelName}} ${{modelNameSingularLowerCase}})
+    {
+        $this->{{modelNameSingularLowerCase}} = ${{modelNameSingularLowerCase}};
+    }
+
+    /** @return {{modelName}} */
+    public function {{modelNameSingularLowerCase}}(): {{modelName}}
+    {
+        return $this->{{modelNameSingularLowerCase}};
+    }
+}

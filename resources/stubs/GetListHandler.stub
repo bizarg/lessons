@@ -1,0 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Api\Application\{{modelName}}\Get{{modelName}}List;
+
+use Api\Domain\{{modelName}}\{{modelName}}Repository;
+use Rosamarsky\CommandBus\Command;
+use Rosamarsky\CommandBus\Handler;
+
+/**
+ * Class Get{{modelName}}ListHandler
+ * @package Api\Application\LeadStatus\GetLeadStatusList
+ */
+class Get{{modelName}}ListHandler implements Handler
+{
+    /**
+     * @var {{modelName}}Repository
+     */
+    private {{modelName}}Repository $customerRepository;
+
+    /**
+     * GetLeadStatusListHandler constructor.
+     * @param {{modelName}}Repository ${{modelNameSingularLowerCase}}Repository
+     */
+    public function __construct(
+        {{modelName}}Repository ${{modelNameSingularLowerCase}}Repository
+    ) {
+        $this->{{modelNameSingularLowerCase}}Repository = ${{modelNameSingularLowerCase}}Repository;
+    }
+    /**
+     * Handle a Command object
+     *
+     * @param Command|Get{{modelName}}List $command
+     * @return mixed
+     */
+    public function handle(Command $command)
+    {
+        return $this->{{modelNameSingularLowerCase}}Repository->all($command->filter(), $command->pagination(), $command->order());
+    }
+}

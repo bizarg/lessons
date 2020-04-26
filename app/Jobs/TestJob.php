@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Notifications\TestNotification;
-use App\User;
+use App\Domain\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
