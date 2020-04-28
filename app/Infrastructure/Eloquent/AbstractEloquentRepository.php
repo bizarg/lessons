@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Eloquent;
 
 use App\Domain\Core\Filter;
+use App\Domain\Core\InterfaceRepository;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
@@ -16,7 +17,7 @@ use Exception;
  * Class EloquentLeadRepository
  * @package App\Infrastructure\Eloquent
  */
-abstract class AbstractEloquentRepository
+abstract class AbstractEloquentRepository implements InterfaceRepository
 {
     /**
      * @var Model
@@ -121,7 +122,7 @@ abstract class AbstractEloquentRepository
      * @param Model $model
      * @return void
      */
-    public function store($model)
+    public function store(Model $model): void
     {
         $this->model = $model;
         $this->model->save();
@@ -134,7 +135,7 @@ abstract class AbstractEloquentRepository
      * @return void
      * @throws Exception
      */
-    public function delete($model)
+    public function delete(Model $model): void
     {
         $this->model = $model;
         $this->model->delete();
@@ -144,7 +145,7 @@ abstract class AbstractEloquentRepository
      * @param string $table
      * @return bool
      */
-    protected function hasJoin($table)
+    protected function hasJoin(string $table): bool
     {
         $joins = $this->builder->getQuery()->joins;
 
@@ -162,20 +163,20 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param Filter|null $filter
+     * @param Filter $filter
      * @return self
      */
-    public function setFilter(?Filter $filter): self
+    public function setFilter(Filter $filter): self
     {
         $this->filter = $filter;
         return $this;
     }
 
     /**
-     * @param Order|null $order
+     * @param Order $order
      * @return self
      */
-    public function setOrder(?Order $order): self
+    public function setOrder(Order $order): self
     {
         $this->order = $order;
         return $this;

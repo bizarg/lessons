@@ -7,6 +7,7 @@ namespace App\Domain\User;
 use App\Domain\Article\Article;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * Class User
@@ -15,6 +16,7 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     use Notifiable;
+    use HasApiTokens;
 
     /** @var array */
     public const ALLOWED_SORT_FIELDS = [

@@ -14,11 +14,13 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
+        "laravel/passport": "^8.4",
         "laravel/socialite": "^4.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
-        "rosamarsky/laravel-command-bus": "^1.0"
+        "rosamarsky/laravel-command-bus": "^1.0",
+        "ext-json": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
@@ -40,7 +42,8 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Api\\": "api/"
         },
         "classmap": [
             "database/seeds",

@@ -2,8 +2,8 @@
 
 namespace App\Domain\Core;
 
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 
 /**
@@ -28,13 +28,13 @@ interface InterfaceRepository
      */
     public function pluck(string $value, ?string $key = null): Collection;
     /**
-     * @param Model $lead
+     * @param Model $model
      */
-    public function store(Model $lead): void;
+    public function store(Model $model): void;
     /**
-     * @param Model $lead
+     * @param Model $model
      */
-    public function delete(Model $lead): void;
+    public function delete(Model $model): void;
     /**
      * @param Filter $filter
      * @return self
