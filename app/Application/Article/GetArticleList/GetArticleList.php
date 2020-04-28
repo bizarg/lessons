@@ -15,51 +15,39 @@ use Rosamarsky\CommandBus\Command;
  */
 class GetArticleList implements Command
 {
-    /**
-     * @var ArticleFilter|null
-     */
+    /** @var Pagination */
+    private Pagination $pagination;
+    /** @var ArticleFilter|null */
     private ?ArticleFilter $filter;
-    /**
-     * @var Pagination|null
-     */
-    private ?Pagination $pagination;
-    /**
-     * @var Order|null
-     */
+    /** @var Order|null */
     private ?Order $order;
 
     /**
-     * GetLeadStatusList constructor.
-     * @param ArticleFilter $filter
-     * @param Pagination|null $pagination
+     * GetArticleList constructor.
+     * @param Pagination $pagination
+     * @param ArticleFilter|null $filter
      * @param Order|null $order
      */
-    public function __construct(ArticleFilter $filter = null, Pagination $pagination = null, Order $order = null)
+    public function __construct(Pagination $pagination, ?ArticleFilter $filter = null, Order $order = null)
     {
-        $this->filter = $filter;
         $this->pagination = $pagination;
+        $this->filter = $filter;
         $this->order = $order;
     }
 
-    /**
-     * @return ArticleFilter|null
-     */
+    /** @return Pagination */
+    public function pagination(): Pagination
+    {
+        return $this->pagination;
+    }
+
+    /** @return ArticleFilter|null */
     public function filter(): ?ArticleFilter
     {
         return $this->filter;
     }
 
-    /**
-     * @return Pagination|null
-     */
-    public function pagination(): ?Pagination
-    {
-        return $this->pagination;
-    }
-
-    /**
-     * @return Order|null
-     */
+    /** @return Order|null */
     public function order(): ?Order
     {
         return $this->order;

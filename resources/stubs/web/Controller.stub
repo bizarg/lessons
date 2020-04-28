@@ -25,7 +25,7 @@ class {{modelName}}Controller extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index({{modelName}}IndexRequest $request): JsonResponse
     {
         $filter = {{modelName}}Filter::fromRequest($request);
         $order = Order::fromRequest($request, {{modelName}}::ALLOWED_SORT_FIELDS);

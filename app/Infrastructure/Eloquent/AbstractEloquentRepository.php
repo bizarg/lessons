@@ -30,7 +30,18 @@ abstract class AbstractEloquentRepository
      * @var Builder
      */
     protected Builder $builder;
-
+    /**
+     * @var Filter|null
+     */
+    protected ?Filter $filter;
+    /**
+     * @var Order|null
+     */
+    protected ?Order $order;
+    /**
+     * @var string
+     */
+    protected string $table;
 
     /**
      * @param Filter $filter
@@ -39,52 +50,69 @@ abstract class AbstractEloquentRepository
     abstract protected function filter(Filter $filter): void;
 
     /**
-     * @param Order|null $order
-     * @return void
+     * @return Collection
      */
-    protected function sort(?Order $order): void
-    {
-        $this->builder->orderBy($order->field(), $order->direction());
-    }
-
-    /**
-     * @param Filter $filter
-     * @param Pagination|null $pagination
-     * @param Order|null $sorting
-     * @return LengthAwarePaginator|Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function all(?Filter $filter = null, ?Pagination $pagination = null, ?Order $sorting = null)
+    public function collection(): Collection
     {
         $this->builder = $this->model->newQuery();
 
-        if ($filter) {
-            $this->filter($filter);
-        }
-
-        if ($sorting) {
-            $this->sort($sorting);
-        }
-
-        if ($pagination) {
-            return $this->builder->paginate($pagination->limit(), ['*'], 'page', $pagination->page());
-        }
+        $this->filterAndOrder();
 
         return $this->builder->get();
     }
 
     /**
-     * Get Lead by field
-     *
-     * @param mixed $value
-     * @param string $field
-     * @return Builder|Model|object
+     * @param string $value
+     * @param string|null $key
+     * @return Collection
      */
-    public function byField($value, $field)
+    public function pluck(string $value, ?string $key = null): Collection
     {
         $this->builder = $this->model->newQuery();
-        return $this->builder
-            ->where($field, '=', $value)
-            ->first();
+
+        $this->filterAndOrder();
+
+        return $this->builder->pluck($value);
+    }
+
+    /**
+     * @param Pagination $pagination
+     * @return LengthAwarePaginator
+     */
+    public function paginate(Pagination $pagination): LengthAwarePaginator
+    {
+        $this->builder = $this->model->newQuery();
+
+        $this->filterAndOrder();
+
+        return $this->builder->paginate($pagination->limit(), ['*'], 'page', $pagination->page());
+    }
+
+    /**
+     * @return Model|null
+     */
+    public function single(): ?Model
+    {
+        $this->builder = $this->model->newQuery();
+
+        $this->filterAndOrder();
+
+        return $this->builder->first();
+    }
+
+    /**
+     * @param Order|null $order
+     * @return void
+     */
+    protected function sort(?Order $order): void
+    {
+        $table = collect(explode('.', $order->field()))->first();
+
+        if ($this->table != $table . '.') {
+            $this->{'join' . ucfirst($table)}();
+        }
+
+        $this->builder->orderBy($order->field(), $order->direction());
     }
 
     /**
@@ -113,43 +141,68 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param array $ids
-     * @throws Exception
+     * @param string $table
+     * @return bool
      */
-    public function deleteByIds($ids)
+    protected function hasJoin($table)
     {
-        $this->builder = $this->model->newQuery();
-        $this->builder->whereIn('id', $ids)->delete();
+        $joins = $this->builder->getQuery()->joins;
+
+        if($joins == null) {
+            return false;
+        }
+
+        foreach ($joins as $join) {
+            if ($join->table == $table) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
-     * @param string $field
-     * @param array $array
-     * @throws \Exception
+     * @param Filter|null $filter
+     * @return self
      */
-    public function deleteByField($field, $array)
+    public function setFilter(?Filter $filter): self
     {
-        $this->builder = $this->model->newQuery();
-        $this->builder->whereIn($field, $array)->delete();
+        $this->filter = $filter;
+        return $this;
     }
 
     /**
-     * Get Lead by field
-     *
-     * @param int $id
-     * @return Model
+     * @param Order|null $order
+     * @return self
      */
-    public function byId(int $id)
+    public function setOrder(?Order $order): self
     {
-        return $this->model->findOrFail($id);
+        $this->order = $order;
+        return $this;
     }
 
     /**
-     * @param array $ids
-     * @return Model[]|Collection
+     * @return void
      */
-    public function byIds(array $ids)
+    public function reset(): void
     {
-        return $this->model->find($ids);
+        $this->filter = null;
+        $this->order = null;
+    }
+
+    /**
+     * @return void
+     */
+    private function filterAndOrder(): void
+    {
+        if ($this->filter) {
+            $this->filter($this->filter);
+        }
+
+        if ($this->order) {
+            $this->sort($this->order);
+        }
+
+        $this->reset();
     }
 }

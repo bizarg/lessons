@@ -17,6 +17,9 @@ use Illuminate\Foundation\Application;
  */
 class EloquentArticleRepository extends AbstractEloquentRepository implements ArticleRepository
 {
+    /** @var string */
+    protected string $table = 'articles.';
+
     /**
      * EloquentLeadRepository constructor.
      * @param Article $model
@@ -39,7 +42,24 @@ class EloquentArticleRepository extends AbstractEloquentRepository implements Ar
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {
                 $query = '%' . strtolower($filter->query()) . '%';
+
+                $this->joinUsers();
+
+                $builder->where($this->table . 'title', 'like', $query)
+                    ->orWhere('users.name', 'like', $query);
             });
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function joinUsers(): void
+    {
+        $table = 'users';
+
+        if (!$this->hasJoin($table)) {
+            $this->builder->join($table, $table . '.id', '=', $this->table . 'author_id');
         }
     }
 }

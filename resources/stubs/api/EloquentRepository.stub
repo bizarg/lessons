@@ -17,6 +17,9 @@ use Illuminate\Foundation\Application;
  */
 class Eloquent{{modelName}}Repository extends AbstractEloquentRepository implements {{modelName}}Repository
 {
+	/** @var string */
+	protected string $table = '{{modelNamePluralLowerCase}}.';
+
     /**
      * EloquentLeadRepository constructor.
      * @param {{modelName}} $model

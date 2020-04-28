@@ -36,6 +36,7 @@ class Get{{modelName}}ListHandler implements Handler
      */
     public function handle(Command $command)
     {
-        return $this->{{modelNameSingularLowerCase}}Repository->all($command->filter(), $command->pagination(), $command->order());
+		return $this->{{modelNameSingularLowerCase}}Repository->setFilter($command->filter())->setOrder($command->order())
+			->paginate($command->pagination());
     }
 }

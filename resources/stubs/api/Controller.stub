@@ -15,7 +15,8 @@ use Api\Http\Resources\{{modelName}}\{{modelName}}ResourceCollection;
 use Api\Domain\{{modelName}}\{{modelName}}Filter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
-use App\Http\Requests\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 /**
  * Class {{modelName}}Controller

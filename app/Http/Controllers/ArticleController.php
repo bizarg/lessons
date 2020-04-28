@@ -14,6 +14,8 @@ use App\Domain\Article\ArticleFilter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Http\Resources\Article\ArticleResourceCollection;
+use App\Infrastructure\Eloquent\EloquentArticleRepository;
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -29,9 +31,19 @@ class ArticleController extends Controller
     /**
      * @param Request $request
      * @return Factory|View|JsonResponse
+     * @throws BindingResolutionException
      */
     public function index(Request $request)
     {
+        $pagination = Pagination::fromRequest($request);
+        $order = (new Order())->setField('users.name')->setDirection('asc');
+        $filter = (new ArticleFilter)->setQuery('otho');
+
+        $rep = app()->make(EloquentArticleRepository::class);
+        $res = $rep->paginate($pagination, $filter, $order);
+        $res1 = $rep->paginate($pagination);
+        dd($res, $res1);
+
         if ($request->ajax()) {
             $filter = ArticleFilter::fromRequest($request);
             $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);

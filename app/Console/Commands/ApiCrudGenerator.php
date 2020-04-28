@@ -37,10 +37,14 @@ class ApiCrudGenerator extends Command
         $this->getListHandler($name);
         $this->controller($name);
         $this->request($name);
+        $this->indexRequest($name);
         $this->eloquentRepository($name);
+        $this->resource($name);
+        $this->resourceCollection($name);
+        $this->test($name);
 
         file_put_contents(
-            base_path('routes/web.php'),
+            base_path('routes/api.php'),
             '//Route::resource(\'' . Str::plural(strtolower($name)) . "', '{$name}Controller');",
             FILE_APPEND
         );
@@ -51,13 +55,11 @@ class ApiCrudGenerator extends Command
      */
     protected function model(string $name)
     {
-        $template = $this->variableTemplate($name, 'Model');
+        $path = "api/Domain/{$name}";
 
-        if (!file_exists($path = base_path("app/Domain/{$name}"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Domain/{$name}/{$name}.php"), $template);
+        $this->put($path . "/{$name}.php", 'Model');
     }
 
     /**
@@ -65,9 +67,11 @@ class ApiCrudGenerator extends Command
      */
     protected function filter(string $name)
     {
-        $template = $this->variableTemplate($name, 'Filter');
+        $path = "api/Domain/{$name}";
 
-        file_put_contents(base_path("app/Domain/{$name}/{$name}Filter.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}Filter.php", 'Filter');
     }
 
     /**
@@ -75,9 +79,11 @@ class ApiCrudGenerator extends Command
      */
     protected function notFound(string $name)
     {
-        $template = $this->variableTemplate($name, 'NotFound');
+        $path = "api/Domain/{$name}";
 
-        file_put_contents(base_path("app/Domain/{$name}/{$name}NotFound.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}NotFound.php", 'NotFound');
     }
 
     /**
@@ -85,9 +91,11 @@ class ApiCrudGenerator extends Command
      */
     protected function repository(string $name)
     {
-        $template = $this->variableTemplate($name, 'Repository');
+        $path = "api/Domain/{$name}";
 
-        file_put_contents(base_path("app/Domain/{$name}/{$name}Repository.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}Repository.php", 'Repository');
     }
 
     /**
@@ -95,13 +103,11 @@ class ApiCrudGenerator extends Command
      */
     protected function delete(string $name)
     {
-        $template = $this->variableTemplate($name, 'Delete');
+        $path = "api/Application/{$name}/Delete{$name}";
 
-        if (!file_exists($path = base_path("app/Application/{$name}/Delete{$name}"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Application/{$name}/Delete{$name}/Delete{$name}.php"), $template);
+        $this->put($path . "/Delete{$name}.php", 'Delete');
     }
 
     /**
@@ -109,9 +115,11 @@ class ApiCrudGenerator extends Command
      */
     protected function deleteHandler(string $name)
     {
-        $template = $this->variableTemplate($name, 'DeleteHandler');
+        $path = "api/Application/{$name}/Delete{$name}";
 
-        file_put_contents(base_path("app/Application/{$name}/Delete{$name}/Delete{$name}Handler.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/Delete{$name}Handler.php", 'DeleteHandler');
     }
 
     /**
@@ -119,13 +127,11 @@ class ApiCrudGenerator extends Command
      */
     protected function register(string $name)
     {
-        $template = $this->variableTemplate($name, 'Register');
+        $path = "api/Application/{$name}/Register{$name}";
 
-        if (!file_exists($path = base_path("app/Application/{$name}/Register{$name}"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Application/{$name}/Register{$name}/Register{$name}.php"), $template);
+        $this->put($path . "/Register{$name}.php", 'Register');
     }
 
     /**
@@ -133,9 +139,11 @@ class ApiCrudGenerator extends Command
      */
     protected function registerHandler(string $name)
     {
-        $template = $this->variableTemplate($name, 'RegisterHandler');
+        $path = "api/Application/{$name}/Update{$name}";
 
-        file_put_contents(base_path("app/Application/{$name}/Register{$name}/Register{$name}Handler.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/Register{$name}Handler.php", 'RegisterHandler');
     }
 
     /**
@@ -143,13 +151,11 @@ class ApiCrudGenerator extends Command
      */
     protected function update(string $name)
     {
-        $template = $this->variableTemplate($name, 'Update');
+        $path = "api/Application/{$name}/Update{$name}";
 
-        if (!file_exists($path = base_path("app/Application/{$name}/Update{$name}"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Application/{$name}/Update{$name}/Update{$name}.php"), $template);
+        $this->put("/Update{$name}.php", 'Update');
     }
 
     /**
@@ -157,9 +163,11 @@ class ApiCrudGenerator extends Command
      */
     protected function updateHandler(string $name)
     {
-        $template = $this->variableTemplate($name, 'UpdateHandler');
+        $path = "api/Application/{$name}/Update{$name}";
 
-        file_put_contents(base_path("app/Application/{$name}/Update{$name}/Update{$name}Handler.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/Update{$name}Handler.php", 'UpdateHandler');
     }
 
     /**
@@ -167,13 +175,11 @@ class ApiCrudGenerator extends Command
      */
     protected function getList(string $name)
     {
-        $template = $this->variableTemplate($name, 'GetList');
+        $path = "api/Application/{$name}/Get{$name}List";
 
-        if (!file_exists($path = base_path("app/Application/{$name}/Get{$name}List"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Application/{$name}/Get{$name}List/Get{$name}List.php"), $template);
+        $this->put($path . "/Get{$name}List.php", 'GetList');
     }
 
     /**
@@ -181,9 +187,11 @@ class ApiCrudGenerator extends Command
      */
     protected function getListHandler(string $name)
     {
-        $template = $this->variableTemplate($name, 'GetListHandler');
+        $path = "api/Application/{$name}/Get{$name}List";
 
-        file_put_contents(base_path("app/Application/{$name}/Get{$name}List/Get{$name}ListHandler.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/Get{$name}ListHandler.php", 'GetListHandler');
     }
 
     /**
@@ -191,13 +199,11 @@ class ApiCrudGenerator extends Command
      */
     protected function eloquentRepository(string $name)
     {
-        $template = $this->variableTemplate($name, 'EloquentRepository');
+        $path = "api/Infrastructure/Eloquent";
 
-        if (!file_exists($path = base_path("app/Infrastructure/Eloquent"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Infrastructure/Eloquent/Eloquent{$name}Repository.php"), $template);
+        $this->put("/Eloquent{$name}Repository.php", 'EloquentRepository');
     }
 
     /**
@@ -205,9 +211,11 @@ class ApiCrudGenerator extends Command
      */
     protected function controller(string $name)
     {
-        $template = $this->variableTemplate($name, 'Controller');
+        $path = "api/Http/Controllers";
 
-        file_put_contents(base_path("app/Http/Controllers/{$name}Controller.php"), $template);
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}Controller.php", 'Controller');
     }
 
     /**
@@ -215,13 +223,23 @@ class ApiCrudGenerator extends Command
      */
     protected function request(string $name)
     {
-        $template = $this->variableTemplate($name, 'Request');
+        $path = "api/Http/Requests/{$name}";
 
-        if (!file_exists($path = base_path("app/Http/Requests/{$name}"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("app/Http/Requests/{$name}/{$name}Request.php"), $template);
+        $this->put($path . "/{$name}Request.php", 'Request');
+    }
+
+    /**
+     * @param string $name
+     */
+    protected function indexRequest(string $name)
+    {
+        $path = "api/Http/Requests/{$name}";
+
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}IndexRequest.php", 'IndexRequest');
     }
 
     /**
@@ -229,13 +247,35 @@ class ApiCrudGenerator extends Command
      */
     protected function test(string $name)
     {
-        $template = $this->variableTemplate($name, 'Test');
+        $path = 'tests/Feature';
 
-        if (!file_exists($path = base_path("tests/Feature"))) {
-            mkdir($path, 0777, true);
-        }
+        $this->makePath($path);
 
-        file_put_contents(base_path("tests/Feature/{$name}Test.php"), $template);
+        $this->put($path . "/{$name}Test.php", 'Test');
+    }
+
+    /**
+     * @param string $name
+     */
+    protected function resource(string $name)
+    {
+        $path = "api/Http/Resources/{$name}";
+
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}Resource.php", 'Resource');
+    }
+
+    /**
+     * @param string $name
+     */
+    protected function resourceCollection(string $name)
+    {
+        $path = "api/Http/Resources/{$name}";
+
+        $this->makePath($path);
+
+        $this->put($path . "/{$name}ResourceCollection.php", 'ResourceCollection');
     }
 
     /**
@@ -244,7 +284,27 @@ class ApiCrudGenerator extends Command
      */
     protected function getStub($type)
     {
-        return file_get_contents(resource_path("stubs/$type.stub"));
+        return file_get_contents(resource_path("stubs/api/$type.stub"));
+    }
+
+    /**
+     * @param string $path
+     */
+    protected function makePath(string $path)
+    {
+        if (!file_exists($path = base_path($path))) {
+            mkdir($path, 0777, true);
+        }
+    }
+
+    /**
+     * @param string $path
+     * @param string $template
+     * @return void
+     */
+    protected function put(string $path, string $template): void
+    {
+        file_put_contents(base_path($path), $this->variableTemplate($template));
     }
 
     /**
@@ -252,8 +312,10 @@ class ApiCrudGenerator extends Command
      * @param string $template
      * @return string|string[]
      */
-    protected function variableTemplate(string $name, string $template)
+    protected function variableTemplate(string $template)
     {
+        $name = $this->argument('name');
+
         return str_replace(
             [
                 '{{modelName}}',

@@ -3,7 +3,8 @@
 namespace App\Domain\Core;
 
 use Illuminate\Database\Eloquent\Model;
-use Exception;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 
 /**
  * Interface InterfaceRepository
@@ -12,46 +13,36 @@ use Exception;
 interface InterfaceRepository
 {
     /**
-     * @param Filter $filter
+     * @return Collection
+     */
+    public function collection(): Collection;
+    /**
      * @param Pagination|null $pagination
-     * @param Order|null $leadOrder
-     * @return mixed
+     * @return LengthAwarePaginator
      */
-    public function all(Filter $filter, ?Pagination $pagination = null, ?Order $leadOrder = null);
-
+    public function paginate(Pagination $pagination): LengthAwarePaginator;
     /**
-     * @param int $id
-     * @return Model
+     * @param string $value
+     * @param string|null $key
+     * @return Collection
      */
-    public function byId(int $id);
-
+    public function pluck(string $value, ?string $key = null): Collection;
     /**
      * @param Model $lead
      */
-    public function store(Model $lead);
-
+    public function store(Model $lead): void;
     /**
      * @param Model $lead
      */
-    public function delete(Model $lead);
-
+    public function delete(Model $lead): void;
     /**
-     * @param mixed $value
-     * @param string $field
-     * @return Model|null
+     * @param Filter $filter
+     * @return self
      */
-    public function byField($value, $field);
-
+    public function setFilter(Filter $filter): self;
     /**
-     * @param array $ids
-     * @throws Exception
+     * @param Order $order
+     * @return self
      */
-    public function deleteByIds($ids);
-
-    /**
-     * @param string $field
-     * @param array $array
-     * @throws Exception
-     */
-    public function deleteByField($field, $array);
+    public function setOrder(Order $order): self;
 }
