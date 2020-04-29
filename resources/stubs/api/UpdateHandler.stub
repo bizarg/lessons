@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Update{{modelName}};
+namespace App\Application\{{modelName}}\Update{{modelName}};
 
-use Api\Domain\{{modelName}}\{{modelName}};
+use App\Domain\{{modelName}}\{{modelName}};
 use App\Domain\{{modelName}}\{{modelName}}Repository;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 
 /**
  * Class Update{{modelName}}Handler
- * @package Api\Application\{{modelName}}\Update{{modelName}}
+ * @package App\Application\{{modelName}}\Update{{modelName}}
  */
 class Update{{modelName}}Handler implements Handler
 {

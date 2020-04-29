@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\Article;
 
 use Illuminate\Http\Request;
@@ -12,24 +14,20 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class ArticleResource extends JsonResource
 {
     /**
-     * Transform the resource into an array.
-     *
      * @param  Request  $request
      * @return array
      */
-    public function toArray($request)
+    public function toArray($request): array
     {
-        return [
+        $response = [
             'type' => 'article',
             'id' => $this->id,
             'attributes' => [
-                'title' => $this->title,
-                'slug' => $this->slug,
-                'body' => $this->body,
-                'author' => $this->author_id,
                 'createdAt' => $this->created_at,
                 'updatedAt' => $this->updated_at,
             ],
         ];
+
+        return $response;
     }
 }

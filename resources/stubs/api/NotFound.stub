@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Api\Domain\{{modelName}};
+namespace App\Domain\{{modelName}};
 
 use App\Domain\Core\EntityNotFound;
 
 /**
  * Class {{modelName}}NotFound
- * @package Api\Domain\{{modelName}}
+ * @package App\Domain\{{modelName}}
  */
 class {{modelName}}NotFound extends EntityNotFound
 {

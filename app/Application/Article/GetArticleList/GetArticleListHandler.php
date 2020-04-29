@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Application\Article\GetArticleList;
 
 use App\Domain\Article\ArticleRepository;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 
@@ -18,7 +17,7 @@ class GetArticleListHandler implements Handler
     /**
      * @var ArticleRepository
      */
-    private ArticleRepository $articleRepository;
+    private ArticleRepository $customerRepository;
 
     /**
      * GetLeadStatusListHandler constructor.
@@ -29,14 +28,15 @@ class GetArticleListHandler implements Handler
     ) {
         $this->articleRepository = $articleRepository;
     }
-
     /**
+     * Handle a Command object
+     *
      * @param Command|GetArticleList $command
-     * @return LengthAwarePaginator
+     * @return mixed
      */
-    public function handle(Command $command): LengthAwarePaginator
+    public function handle(Command $command)
     {
-        return $this->articleRepository->setFilter($command->filter())->setOrder($command->order())
-            ->paginate($command->pagination());
+		return $this->articleRepository->setFilter($command->filter())->setOrder($command->order())
+			->paginate($command->pagination());
     }
 }

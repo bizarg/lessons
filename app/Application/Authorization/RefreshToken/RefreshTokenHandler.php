@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Application\Authorization\RefreshToken;
+namespace App\Application\Authorization\RefreshToken;
 
 use Illuminate\Support\Facades\DB;
 use Laravel\Passport\Exceptions\OAuthServerException;
@@ -14,7 +14,7 @@ use League\OAuth2\Server\AuthorizationServer;
 
 /**
  * Class RefreshTokenHandler
- * @package Api\Application\Auth
+ * @package App\Application\Auth
  */
 class RefreshTokenHandler implements Handler
 {

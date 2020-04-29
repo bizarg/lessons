@@ -1,13 +1,13 @@
 <?php
 
-namespace Api\Application\Authorization\Login;
+namespace App\Application\Authorization\Login;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class Login
- * @package Api\Application\Authorization
+ * @package App\Application\Authorization
  */
 class Login implements Command
 {

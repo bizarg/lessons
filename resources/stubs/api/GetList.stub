@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Get{{modelName}}List;
+namespace App\Application\{{modelName}}\Get{{modelName}}List;
 
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
-use Api\Domain\{{modelName}}\{{modelName}}Filter;
+use App\Domain\{{modelName}}\{{modelName}}Filter;
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class Get{{modelName}}List
- * @package Api\Application\{{modelName}}\Get{{modelName}}List
+ * @package App\Application\{{modelName}}\Get{{modelName}}List
  */
 class Get{{modelName}}List implements Command
 {

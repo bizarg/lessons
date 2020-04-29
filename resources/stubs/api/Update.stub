@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Update{{modelName}};
+namespace App\Application\{{modelName}}\Update{{modelName}};
 
-use Api\Domain\{{modelName}}\{{modelName}};
-use Api\Http\Requests\{{modelName}}\{{modelName}}Request;
+use App\Domain\{{modelName}}\{{modelName}};
+use App\Http\Requests\{{modelName}}\{{modelName}}Request;
 use Illuminate\Http\Request;
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class Update{{modelName}}
- * @package Api\Application\{{modelName}}\Update{{modelName}}
+ * @package App\Application\{{modelName}}\Update{{modelName}}
  */
 class Update{{modelName}} implements Command
 {

@@ -1,12 +1,12 @@
 <?php
 
-namespace Api\Application\Authorization\Logout;
+namespace App\Application\Authorization\Logout;
 
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class Logout
- * @package Api\Application\Authorization\Logout
+ * @package App\Application\Authorization\Logout
  */
 class Logout implements Command
 {

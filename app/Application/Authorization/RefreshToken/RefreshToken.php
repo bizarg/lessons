@@ -1,13 +1,13 @@
 <?php
 
-namespace Api\Application\Authorization\RefreshToken;
+namespace App\Application\Authorization\RefreshToken;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class RefreshToken
- * @package Api\Application\Auth
+ * @package App\Application\Auth
  */
 class RefreshToken implements Command
 {

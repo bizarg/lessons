@@ -69,6 +69,9 @@
                                 <a href="{{ route('login.network', 'facebook') }}"><div class="btn btn-md btn-primary">
                                         <i class="fa fa-facebook"></i> Login with Facebook</div>
                                 </a>
+                                <a href="{{ route('login.network', 'github') }}"><div class="btn btn-md btn-primary">
+                                        <i class="fa fa-facebook"></i> Login with Git Hub</div>
+                                </a>
                             </div>
                         </div>
                     </form>

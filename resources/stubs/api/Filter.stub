@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Api\Domain\{{modelName}};
+namespace App\Domain\{{modelName}};
 
-use Api\Domain\Core\Filter;
+use App\Domain\Core\Filter;
 use Illuminate\Http\Request;
 
 /**
  * Class {{modelName}}Filter
- * @package Api\Domain\{{modelName}}
+ * @package App\Domain\{{modelName}}
  */
 class {{modelName}}Filter implements Filter
 {

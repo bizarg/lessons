@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -42,6 +43,7 @@ class ApiCrudGenerator extends Command
         $this->resource($name);
         $this->resourceCollection($name);
         $this->test($name);
+        $this->migrate($name);
 
         file_put_contents(
             base_path('routes/api.php'),
@@ -55,7 +57,7 @@ class ApiCrudGenerator extends Command
      */
     protected function model(string $name)
     {
-        $path = "api/Domain/{$name}";
+        $path = "app/Domain/{$name}";
 
         $this->makePath($path);
 
@@ -67,7 +69,7 @@ class ApiCrudGenerator extends Command
      */
     protected function filter(string $name)
     {
-        $path = "api/Domain/{$name}";
+        $path = "app/Domain/{$name}";
 
         $this->makePath($path);
 
@@ -79,7 +81,7 @@ class ApiCrudGenerator extends Command
      */
     protected function notFound(string $name)
     {
-        $path = "api/Domain/{$name}";
+        $path = "app/Domain/{$name}";
 
         $this->makePath($path);
 
@@ -91,7 +93,7 @@ class ApiCrudGenerator extends Command
      */
     protected function repository(string $name)
     {
-        $path = "api/Domain/{$name}";
+        $path = "app/Domain/{$name}";
 
         $this->makePath($path);
 
@@ -103,7 +105,7 @@ class ApiCrudGenerator extends Command
      */
     protected function delete(string $name)
     {
-        $path = "api/Application/{$name}/Delete{$name}";
+        $path = "app/Application/{$name}/Delete{$name}";
 
         $this->makePath($path);
 
@@ -115,7 +117,7 @@ class ApiCrudGenerator extends Command
      */
     protected function deleteHandler(string $name)
     {
-        $path = "api/Application/{$name}/Delete{$name}";
+        $path = "app/Application/{$name}/Delete{$name}";
 
         $this->makePath($path);
 
@@ -127,7 +129,7 @@ class ApiCrudGenerator extends Command
      */
     protected function register(string $name)
     {
-        $path = "api/Application/{$name}/Register{$name}";
+        $path = "app/Application/{$name}/Register{$name}";
 
         $this->makePath($path);
 
@@ -139,7 +141,7 @@ class ApiCrudGenerator extends Command
      */
     protected function registerHandler(string $name)
     {
-        $path = "api/Application/{$name}/Update{$name}";
+        $path = "app/Application/{$name}/Update{$name}";
 
         $this->makePath($path);
 
@@ -151,7 +153,7 @@ class ApiCrudGenerator extends Command
      */
     protected function update(string $name)
     {
-        $path = "api/Application/{$name}/Update{$name}";
+        $path = "app/Application/{$name}/Update{$name}";
 
         $this->makePath($path);
 
@@ -163,7 +165,7 @@ class ApiCrudGenerator extends Command
      */
     protected function updateHandler(string $name)
     {
-        $path = "api/Application/{$name}/Update{$name}";
+        $path = "app/Application/{$name}/Update{$name}";
 
         $this->makePath($path);
 
@@ -175,7 +177,7 @@ class ApiCrudGenerator extends Command
      */
     protected function getList(string $name)
     {
-        $path = "api/Application/{$name}/Get{$name}List";
+        $path = "app/Application/{$name}/Get{$name}List";
 
         $this->makePath($path);
 
@@ -187,7 +189,7 @@ class ApiCrudGenerator extends Command
      */
     protected function getListHandler(string $name)
     {
-        $path = "api/Application/{$name}/Get{$name}List";
+        $path = "app/Application/{$name}/Get{$name}List";
 
         $this->makePath($path);
 
@@ -199,7 +201,7 @@ class ApiCrudGenerator extends Command
      */
     protected function eloquentRepository(string $name)
     {
-        $path = "api/Infrastructure/Eloquent";
+        $path = "app/Infrastructure/Eloquent";
 
         $this->makePath($path);
 
@@ -211,7 +213,7 @@ class ApiCrudGenerator extends Command
      */
     protected function controller(string $name)
     {
-        $path = "api/Http/Controllers";
+        $path = "app/Http/Controllers/Api";
 
         $this->makePath($path);
 
@@ -223,7 +225,7 @@ class ApiCrudGenerator extends Command
      */
     protected function request(string $name)
     {
-        $path = "api/Http/Requests/{$name}";
+        $path = "app/Http/Requests/{$name}";
 
         $this->makePath($path);
 
@@ -235,7 +237,7 @@ class ApiCrudGenerator extends Command
      */
     protected function indexRequest(string $name)
     {
-        $path = "api/Http/Requests/{$name}";
+        $path = "app/Http/Requests/{$name}";
 
         $this->makePath($path);
 
@@ -259,7 +261,7 @@ class ApiCrudGenerator extends Command
      */
     protected function resource(string $name)
     {
-        $path = "api/Http/Resources/{$name}";
+        $path = "app/Http/Resources/{$name}";
 
         $this->makePath($path);
 
@@ -271,11 +273,27 @@ class ApiCrudGenerator extends Command
      */
     protected function resourceCollection(string $name)
     {
-        $path = "api/Http/Resources/{$name}";
+        $path = "app/Http/Resources/{$name}";
 
         $this->makePath($path);
 
         $this->put($path . "/{$name}ResourceCollection.php", 'ResourceCollection');
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    protected function migrate(string $name): void
+    {
+        $path = "database/migrations";
+
+        $this->makePath($path);
+
+        $filename = Carbon::now()->format('Y_m_d_His')
+            . '_create_' . Str::snake(trim(strtolower(Str::plural($name)))) . '_table.php';
+
+        $this->put($path . "/" . $filename, 'Migrate');
     }
 
     /**

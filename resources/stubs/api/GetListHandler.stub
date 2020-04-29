@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Get{{modelName}}List;
+namespace App\Application\{{modelName}}\Get{{modelName}}List;
 
-use Api\Domain\{{modelName}}\{{modelName}}Repository;
+use App\Domain\{{modelName}}\{{modelName}}Repository;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 
 /**
  * Class Get{{modelName}}ListHandler
- * @package Api\Application\LeadStatus\GetLeadStatusList
+ * @package App\Application\LeadStatus\GetLeadStatusList
  */
 class Get{{modelName}}ListHandler implements Handler
 {

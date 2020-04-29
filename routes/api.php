@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['as' => 'api.'], function () {
-    Route::group(['prefix' => 'auth', 'as' => 'auth.'], function () {
+    Route::group(['prefix' => 'auth', 'as' => 'auth.', 'namespace' => 'Auth'], function () {
         Route::post('/login', 'AuthorizationController@login')->name('login');
         Route::post('/refresh', 'AuthorizationController@refreshToken')->name('refresh');
 
@@ -23,6 +23,7 @@ Route::group(['as' => 'api.'], function () {
             Route::get('/logout', 'AuthorizationController@logout')->name('logout');
         });
     });
+
+    Route::apiResources(['articles' => 'ArticleController']);
 });
 
-//Route::resource('projects', 'ProjectController');//Route::resource('projects', 'ProjectController');//Route::resource('projects', 'ProjectController');//Route::resource('projects', 'ProjectController');

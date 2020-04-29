@@ -5,28 +5,28 @@ declare(strict_types=1);
 namespace App\Infrastructure\Eloquent;
 
 use App\Domain\Core\Filter;
-use App\Domain\{{modelName}}\{{modelName}};
-use App\Domain\{{modelName}}\{{modelName}}Filter;
-use App\Domain\{{modelName}}\{{modelName}}Repository;
+use App\Domain\Article\Article;
+use App\Domain\Article\ArticleFilter;
+use App\Domain\Article\ArticleRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
 
 /**
- * Class Eloquent{{modelName}}Repository
+ * Class EloquentArticleRepository
  * @package App\Infrastructure\Eloquent
  */
-class Eloquent{{modelName}}Repository extends AbstractEloquentRepository implements {{modelName}}Repository
+class EloquentArticleRepository extends AbstractEloquentRepository implements ArticleRepository
 {
 	/** @var string */
-	protected string $table = '{{modelNamePluralLowerCase}}.';
+	protected string $table = 'articles.';
 
     /**
      * EloquentLeadRepository constructor.
-     * @param {{modelName}} $model
+     * @param Article $model
      * @param Application $app
      */
     public function __construct(
-        {{modelName}} $model,
+        Article $model,
         Application $app
     ) {
         $this->model = $model;
@@ -34,7 +34,7 @@ class Eloquent{{modelName}}Repository extends AbstractEloquentRepository impleme
     }
 
     /**
-     * @param Filter|{{modelName}}Filter $filter
+     * @param Filter|ArticleFilter $filter
      * @return void
      */
     protected function filter(Filter $filter): void

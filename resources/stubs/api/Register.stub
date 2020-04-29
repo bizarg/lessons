@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Register{{modelName}};
+namespace App\Application\{{modelName}}\Register{{modelName}};
 
-use Api\Http\Requests\{{modelName}}\{{modelName}}Request;
+use App\Http\Requests\{{modelName}}\{{modelName}}Request;
 use Illuminate\Http\Request;
 use Rosamarsky\CommandBus\Command;
 

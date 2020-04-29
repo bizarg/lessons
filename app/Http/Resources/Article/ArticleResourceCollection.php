@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Resources\Article;
 
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use App\Http\Resources\ResourceCollectionWithStandardResponse;
 
 /**
  * Class ArticleResourceCollection
- * @package Api\Http\Resources\Article
+ * @package App\Http\Resources\Article
  */
-class ArticleResourceCollection extends ResourceCollection
+class ArticleResourceCollection extends ResourceCollectionWithStandardResponse
 {
     /**
      * @param object $item
@@ -17,5 +19,13 @@ class ArticleResourceCollection extends ResourceCollection
     protected function getItemData($item): ArticleResource
     {
         return new ArticleResource($item);
+    }
+
+    /**
+     * @return null|string
+     */
+    protected function getLinksHelperRouteName()
+    {
+        return null;
     }
 }

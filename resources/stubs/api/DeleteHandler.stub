@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Delete{{modelName}};
+namespace App\Application\{{modelName}}\Delete{{modelName}};
 
-use Api\Domain\{{modelName}}\{{modelName}}Repository;
+use App\Domain\{{modelName}}\{{modelName}}Repository;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 
 /**
  * Class Delete{{modelName}}Handler
- * @package Api\Application\{{modelName}}
+ * @package App\Application\{{modelName}}
  */
 class Delete{{modelName}}Handler implements Handler
 {

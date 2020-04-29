@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Delete{{modelName}};
+namespace App\Application\{{modelName}}\Delete{{modelName}};
 
-use Api\Domain\{{modelName}}\{{modelName}};
+use App\Domain\{{modelName}}\{{modelName}};
 use Rosamarsky\CommandBus\Command;
 
 /**
  * Class Delete{{modelName}}
- * @package Api\Application\{{modelName}}
+ * @package App\Application\{{modelName}}
  */
 class Delete{{modelName}} implements Command
 {

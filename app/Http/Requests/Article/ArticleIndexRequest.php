@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Requests\{{modelName}};
+namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class {{modelName}}Request
- * @package App\Http\Requests\{{modelName}}
+ * Class ArticleRequest
+ * @package App\Http\Requests\Article
  */
-class {{modelName}}Request extends FormRequest
+class ArticleIndexRequest extends FormRequest
 {
     public function authorize()
     {

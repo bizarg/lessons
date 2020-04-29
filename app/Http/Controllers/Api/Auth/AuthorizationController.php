@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Api\Http\Controllers;
+namespace App\Http\Controllers\Api\Auth;
 
-use Api\Application\Authorization\Login\Login;
-use Api\Application\Authorization\Logout\Logout;
-use Api\Application\Authorization\RefreshToken\RefreshToken;
+use App\Application\Authorization\Login\Login;
+use App\Application\Authorization\Logout\Logout;
+use App\Application\Authorization\RefreshToken\RefreshToken;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

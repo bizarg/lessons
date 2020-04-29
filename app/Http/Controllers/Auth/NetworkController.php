@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\UseCases\Auth\NetworkService;
+//use App\UseCases\Auth\NetworkService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
@@ -14,7 +14,7 @@ use Laravel\Socialite\Facades\Socialite;
  */
 class NetworkController extends Controller
 {
-//    private $service;
+    private $service;
 
 //    /**
 //     * NetworkController constructor.
@@ -36,13 +36,12 @@ class NetworkController extends Controller
 
     /**
      * @param string $network
-     * @return RedirectResponse
+     * @return void
      */
     public function callback(string $network)
     {
+        $data = Socialite::driver($network)->user();
 
-        dd($network);
-        $socialUser = Socialite::driver($network)->user();
 //        try {
 //            $user = $this->service->auth($network, $data);
 //            Auth::login($user);

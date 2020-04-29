@@ -2,25 +2,26 @@
 
 declare(strict_types=1);
 
-namespace Api\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Api\Application\{{modelName}}\Delete{{modelName}}\Delete{{modelName}};
-use Api\Application\{{modelName}}\Get{{modelName}}List\Get{{modelName}}List;
-use Api\Application\{{modelName}}\Register{{modelName}}\Register{{modelName}};
-use Api\Application\{{modelName}}\Update{{modelName}}\Update{{modelName}};
-use Api\Domain\{{modelName}}\{{modelName}};
-use Api\Http\Requests\{{modelName}}\{{modelName}}Request;
-use Api\Http\Resources\{{modelName}}\{{modelName}}Resource;
-use Api\Http\Resources\{{modelName}}\{{modelName}}ResourceCollection;
-use Api\Domain\{{modelName}}\{{modelName}}Filter;
+use App\Application\{{modelName}}\Delete{{modelName}}\Delete{{modelName}};
+use App\Application\{{modelName}}\Get{{modelName}}List\Get{{modelName}}List;
+use App\Application\{{modelName}}\Register{{modelName}}\Register{{modelName}};
+use App\Application\{{modelName}}\Update{{modelName}}\Update{{modelName}};
+use App\Domain\{{modelName}}\{{modelName}};
+use App\Http\Requests\{{modelName}}\{{modelName}}Request;
+use App\Http\Resources\{{modelName}}\{{modelName}}Resource;
+use App\Http\Resources\{{modelName}}\{{modelName}}ResourceCollection;
+use App\Domain\{{modelName}}\{{modelName}}Filter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Class {{modelName}}Controller
- * @package Api\Http\Controllers
+ * @package App\Http\Controllers
  */
 class {{modelName}}Controller extends Controller
 {

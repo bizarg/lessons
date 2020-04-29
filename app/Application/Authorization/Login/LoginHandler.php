@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Application\Authorization\Login;
+namespace App\Application\Authorization\Login;
 
 use App\Domain\User\User;
 use GuzzleHttp\Psr7\Response;
@@ -15,7 +15,7 @@ use Rosamarsky\CommandBus\Handler;
 
 /**
  * Class LoginHandler
- * @package Api\Application\Authorization
+ * @package App\Application\Authorization
  */
 class LoginHandler implements Handler
 {

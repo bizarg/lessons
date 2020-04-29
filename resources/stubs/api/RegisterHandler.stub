@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Api\Application\{{modelName}}\Register{{modelName}};
+namespace App\Application\{{modelName}}\Register{{modelName}};
 
-use Api\Domain\{{modelName}}\{{modelName}};
-use Api\Domain\{{modelName}}\{{modelName}}Repository;
+use App\Domain\{{modelName}}\{{modelName}};
+use App\Domain\{{modelName}}\{{modelName}}Repository;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 

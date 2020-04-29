@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Api\Domain\{{modelName}};
+namespace App\Domain\{{modelName}};
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class {{modelName}}
- * @package Api\Domain\{{modelName}}
+ * @package App\Domain\{{modelName}}
  */
 class {{modelName}} extends Model
 {

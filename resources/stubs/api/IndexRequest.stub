@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Api\Http\Requests\{{modelName}};
+namespace App\Http\Requests\{{modelName}};
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class {{modelName}}Request
- * @package Api\Http\Requests\{{modelName}}
+ * @package App\Http\Requests\{{modelName}}
  */
 class {{modelName}}IndexRequest extends FormRequest
 {

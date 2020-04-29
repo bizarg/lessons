@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Api\Http\Resources\{{modelName}};
+namespace App\Http\Resources\{{modelName}};
 
-use Api\Http\Resources\ResourceCollectionWithStandardResponse;
+use App\Http\Resources\ResourceCollectionWithStandardResponse;
 
 /**
  * Class {{modelName}}ResourceCollection
- * @package Api\Http\Resources\{{modelName}}
+ * @package App\Http\Resources\{{modelName}}
  */
 class {{modelName}}ResourceCollection extends ResourceCollectionWithStandardResponse
 {

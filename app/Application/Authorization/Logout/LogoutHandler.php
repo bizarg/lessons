@@ -1,6 +1,6 @@
 <?php
 
-namespace Api\Application\Authorization\Logout;
+namespace App\Application\Authorization\Logout;
 
 use Laravel\Passport\Token;
 use Rosamarsky\CommandBus\Command;
@@ -8,7 +8,7 @@ use Rosamarsky\CommandBus\Handler;
 
 /**
  * Class LogoutHandler
- * @package App\Api\V1\Application\Auth
+ * @package App\Application\Authorization\Logout
  */
 class LogoutHandler implements Handler
 {
