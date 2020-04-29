@@ -31,7 +31,7 @@ class {{modelName}}Controller extends Controller
         $order = Order::fromRequest($request, {{modelName}}::ALLOWED_SORT_FIELDS);
         $pagination = Pagination::fromRequest($request);
 
-        ${{modelNamePluralLowerCase}} = $this->dispatch(new Get{{modelName}}List($filter, $pagination, $order));
+        ${{modelNamePluralLowerCase}} = $this->dispatchCommand(new Get{{modelName}}List($filter, $pagination, $order));
 
         return response()->json(new {{modelName}}ResourceCollection(${{modelNamePluralLowerCase}}), Response::HTTP_OK);
     }
@@ -42,7 +42,7 @@ class {{modelName}}Controller extends Controller
      */
     public function store({{modelName}}Request $request): JsonResponse
     {
-        ${{modelNameSingularLowerCase}} = $this->dispatch(Register{{modelName}}::fromRequest($request));
+        ${{modelNameSingularLowerCase}} = $this->dispatchCommand(Register{{modelName}}::fromRequest($request));
 
         return response()->json(['data' => new {{modelName}}Resource(${{modelNameSingularLowerCase}})], Response::HTTP_CREATED);
     }
@@ -54,7 +54,7 @@ class {{modelName}}Controller extends Controller
      */
     public function update({{modelName}}Request $request, {{modelName}} ${{modelNameSingularLowerCase}}): JsonResponse
     {
-        ${{modelNameSingularLowerCase}} = $this->dispatch(Update{{modelName}}::fromRequest($request, ${{modelNameSingularLowerCase}}));
+        ${{modelNameSingularLowerCase}} = $this->dispatchCommand(Update{{modelName}}::fromRequest($request, ${{modelNameSingularLowerCase}}));
 
         return response()->json([
             'data' => new {{modelName}}Resource(${{modelNameSingularLowerCase}})
@@ -76,7 +76,7 @@ class {{modelName}}Controller extends Controller
      */
     public function destroy({{modelName}} ${{modelNameSingularLowerCase}}): JsonResponse
     {
-        $this->dispatch(new Delete{{modelName}}(${{modelNameSingularLowerCase}}));
+        $this->dispatchCommand(new Delete{{modelName}}(${{modelNameSingularLowerCase}}));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

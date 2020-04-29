@@ -2,17 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources\Article;
+namespace App\Http\Resources\User;
 
-use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * Class ArticleResource
- * @package App\Http\Resources\Article
+ * Class UserResource
+ * @package App\Http\Resources\User
  */
-class ArticleResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * @param  Request  $request
@@ -21,18 +20,15 @@ class ArticleResource extends JsonResource
     public function toArray($request): array
     {
         $response = [
-            'type' => 'article',
+            'type' => 'user',
             'id' => $this->id,
             'attributes' => [
-                'title' => $this->title,
-                'slug' => $this->slug,
-                'body' => $this->body,
+                'name' => $this->name,
+                'email' => $this->email,
                 'createdAt' => $this->created_at,
                 'updatedAt' => $this->updated_at,
             ],
         ];
-
-        $response['attributes']['relationships']['author'] = new UserResource($this->author);
 
         return $response;
     }

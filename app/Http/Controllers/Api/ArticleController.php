@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
         $pagination = Pagination::fromRequest($request);
 
-        $articles = $this->dispatch(new GetArticleList($filter, $pagination, $order));
+        $articles = $this->dispatchCommand(new GetArticleList($filter, $pagination, $order));
 
         return response()->json(new ArticleResourceCollection($articles), Response::HTTP_OK);
     }
@@ -47,7 +47,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request): JsonResponse
     {
-        $article = $this->dispatch(RegisterArticle::fromRequest($request));
+        $article = $this->dispatchCommand(RegisterArticle::fromRequest($request));
 
         return response()->json(['data' => new ArticleResource($article)], Response::HTTP_CREATED);
     }
@@ -59,7 +59,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Article $article): JsonResponse
     {
-        $article = $this->dispatch(UpdateArticle::fromRequest($request, $article));
+        $article = $this->dispatchCommand(UpdateArticle::fromRequest($request, $article));
 
         return response()->json([
             'data' => new ArticleResource($article)
@@ -81,7 +81,7 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article): JsonResponse
     {
-        $this->dispatch(new DeleteArticle($article));
+        $this->dispatchCommand(new DeleteArticle($article));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

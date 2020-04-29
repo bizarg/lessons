@@ -24,6 +24,8 @@ Route::group(['as' => 'api.'], function () {
         });
     });
 
-    Route::apiResources(['articles' => 'ArticleController']);
+    Route::apiResources([
+        'articles' => 'ArticleController',
+        'users' => 'UserController'
+    ]);
 });
-

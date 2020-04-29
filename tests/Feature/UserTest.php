@@ -6,25 +6,24 @@ use Illuminate\Http\Response;
 use Tests\Feature\TestCase as BaseTestCase;
 
 /**
- * Class ArticleTest
+ * Class UserTest
  * @package Tests\Feature
  */
-class ArticleTest extends BaseTestCase
+class UserTest extends BaseTestCase
 {
     /**
      * @test
      */
-    public function shouldIndexArticle()
+    public function shouldIndexUser()
     {
-        $this->signIn();
-        $route = route('api.articles.index');
-        $data = [];
+        $token = $this->signIn()['accessToken'];
+        $headers = ['Authorization' => 'Bearer ' . $token];
 
         $this
-            ->json('get', $route, $data, $this->headers())
+            ->json('get', route('api.users.index'), [], $headers)
             ->assertJson([
                 'data' => [
-                    ['type' => 'article']
+                    ['type' => 'user']
                 ]
             ])
             ->assertJsonStructure([
@@ -49,17 +48,17 @@ class ArticleTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldShowArticle()
+    public function shouldShowUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
         $show = 1;
 
         $this
-            ->json('get', route('api.articles.show', $show), [], $headers)
+            ->json('get', route('api.users.show', $show), [], $headers)
             ->assertJson([
                 'data' => [
-                    'type' => 'article',
+                    'type' => 'user',
                     'id' => $show,
                 ]
             ])
@@ -69,30 +68,30 @@ class ArticleTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldStoreArticle()
+    public function shouldStoreUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
         $data = [];
 
         $this
-            ->json('post', route('api.articles.store'), $data, $headers)
+            ->json('post', route('api.users.store'), $data, $headers)
             ->assertStatus(Response::HTTP_CREATED);
 
-        $this->assertDatabaseHas('articles', [
+        $this->assertDatabaseHas('users', [
         ]);
     }
 
     /**
      * @test
      */
-    public function shouldErrorStoreArticle()
+    public function shouldErrorStoreUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
 
         $this
-            ->json('post', route('api.articles.store'), [], $headers)
+            ->json('post', route('api.users.store'), [], $headers)
             ->assertJson([
                 'errors' => [
                 ]
@@ -103,7 +102,7 @@ class ArticleTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldUpdateArticle()
+    public function shouldUpdateUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
@@ -112,41 +111,41 @@ class ArticleTest extends BaseTestCase
         ];
 
         $this
-            ->json('put', route('api.articles.update', $update), $data, $headers)
+            ->json('put', route('api.users.update', $update), $data, $headers)
             ->assertStatus(Response::HTTP_OK);
 
-        $this->assertDatabaseHas('articles', [
+        $this->assertDatabaseHas('users', [
         ]);
     }
 
     /**
      * @test
      */
-    public function shouldDeleteArticle()
+    public function shouldDeleteUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
         $delete = 1;
 
         $this
-            ->json('delete', route('api.articles.destroy', $delete), [], $headers)
+            ->json('delete', route('api.users.destroy', $delete), [], $headers)
             ->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseMissing('articles', ['id' => $delete]);
+        $this->assertDatabaseMissing('users', ['id' => $delete]);
     }
 
 
     /**
      * @test
      */
-    public function shouldErrorsDeleteArticle()
+    public function shouldErrorsDeleteUser()
     {
         $token = $this->signIn()['accessToken'];
         $headers = ['Authorization' => 'Bearer ' . $token];
         $delete = 999;
 
         $this
-            ->json('delete', route('api.articles.destroy', $delete), [], $headers)
+            ->json('delete', route('api.users.destroy', $delete), [], $headers)
                 ->assertJson([
                     'errors' => [
                         $this->errorPageNotFound()

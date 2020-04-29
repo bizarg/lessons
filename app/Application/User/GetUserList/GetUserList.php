@@ -15,39 +15,51 @@ use Rosamarsky\CommandBus\Command;
  */
 class GetUserList implements Command
 {
-    /** @var Pagination */
-    private Pagination $pagination;
-    /** @var UserFilter|null */
+    /**
+     * @var UserFilter|null
+     */
     private ?UserFilter $filter;
-    /** @var Order|null */
+    /**
+     * @var Pagination|null
+     */
+    private ?Pagination $pagination;
+    /**
+     * @var Order|null
+     */
     private ?Order $order;
 
     /**
-     * GetUserList constructor.
-     * @param Pagination $pagination
-     * @param UserFilter|null $filter
+     * GetLeadStatusList constructor.
+     * @param UserFilter $filter
+     * @param Pagination|null $pagination
      * @param Order|null $order
      */
-    public function __construct(Pagination $pagination, UserFilter $filter = null, Order $order = null)
+    public function __construct(UserFilter $filter = null, Pagination $pagination = null, Order $order = null)
     {
-        $this->pagination = $pagination;
         $this->filter = $filter;
+        $this->pagination = $pagination;
         $this->order = $order;
     }
 
-    /** @return Pagination */
-    public function pagination(): Pagination
-    {
-        return $this->pagination;
-    }
-
-    /** @return UserFilter|null */
+    /**
+     * @return UserFilter|null
+     */
     public function filter(): ?UserFilter
     {
         return $this->filter;
     }
 
-    /** @return Order|null */
+    /**
+     * @return Pagination|null
+     */
+    public function pagination(): ?Pagination
+    {
+        return $this->pagination;
+    }
+
+    /**
+     * @return Order|null
+     */
     public function order(): ?Order
     {
         return $this->order;

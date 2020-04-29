@@ -36,6 +36,7 @@ class GetUserListHandler implements Handler
      */
     public function handle(Command $command)
     {
-        return $this->userRepository->all($command->filter(), $command->pagination(), $command->order());
+		return $this->userRepository->setFilter($command->filter())->setOrder($command->order())
+			->paginate($command->pagination());
     }
 }
