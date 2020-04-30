@@ -12,13 +12,22 @@ use Illuminate\Foundation\Http\FormRequest;
  */
 class ArticleIndexRequest extends FormRequest
 {
-    public function authorize()
+    /**
+     * @return bool
+     */
+    public function authorize(): bool
     {
         return true;
     }
 
-    public function rules()
+    /**
+     * @return array
+     */
+    public function rules(): array
     {
-        return [];
+        return [
+            'title' => 'nullable|string|max:255',
+            'author' => 'nullable|integer',
+        ];
     }
 }

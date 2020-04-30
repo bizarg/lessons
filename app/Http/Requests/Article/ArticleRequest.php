@@ -5,10 +5,14 @@ declare(strict_types=1);
 namespace App\Http\Requests\Article;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 /**
  * Class ArticleRequest
  * @package App\Http\Requests\Article
+ * @property string $title
+ * @property string $body
+ * @property int $author
  */
 class ArticleRequest extends FormRequest
 {
@@ -19,6 +23,14 @@ class ArticleRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'title' => 'required|array|translate',
+            'body' => 'required|array|translate',
+            'author' => [
+                'nullable',
+                'integer',
+                Rule::exists('users')
+            ]
+        ];
     }
 }

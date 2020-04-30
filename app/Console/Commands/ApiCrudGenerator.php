@@ -141,7 +141,7 @@ class ApiCrudGenerator extends Command
      */
     protected function registerHandler(string $name)
     {
-        $path = "app/Application/{$name}/Update{$name}";
+        $path = "app/Application/{$name}/Register{$name}";
 
         $this->makePath($path);
 
@@ -157,7 +157,7 @@ class ApiCrudGenerator extends Command
 
         $this->makePath($path);
 
-        $this->put("/Update{$name}.php", 'Update');
+        $this->put($path . "/Update{$name}.php", 'Update');
     }
 
     /**
@@ -205,7 +205,7 @@ class ApiCrudGenerator extends Command
 
         $this->makePath($path);
 
-        $this->put("/Eloquent{$name}Repository.php", 'EloquentRepository');
+        $this->put($path . "/Eloquent{$name}Repository.php", 'EloquentRepository');
     }
 
     /**

@@ -3,7 +3,12 @@
 namespace App\Providers;
 
 use App\Domain\Article\ArticleRepository;
+use App\Domain\Language\LanguageRepository;
+use App\Domain\User\UserRepository;
 use App\Infrastructure\Eloquent\EloquentArticleRepository;
+use App\Infrastructure\Eloquent\EloquentLanguageRepository;
+use App\Infrastructure\Eloquent\EloquentUserRepository;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 
 /**
@@ -19,6 +24,9 @@ class DomainServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Carbon::serializeUsing(function ($carbon) {
+            return $carbon->format('Y-m-d H:i:s');
+        });
     }
 
     /**
@@ -29,6 +37,7 @@ class DomainServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(ArticleRepository::class, EloquentArticleRepository::class);
-//        $this->app->singleton(ArticleRepository::class, EloquentArticleRepository::class);
+        $this->app->singleton(UserRepository::class, EloquentUserRepository::class);
+        $this->app->singleton(LanguageRepository::class, EloquentLanguageRepository::class);
     }
 }

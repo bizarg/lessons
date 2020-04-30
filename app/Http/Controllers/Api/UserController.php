@@ -9,6 +9,7 @@ use App\Application\User\GetUserList\GetUserList;
 use App\Application\User\RegisterUser\RegisterUser;
 use App\Application\User\UpdateUser\UpdateUser;
 use App\Domain\User\User;
+use App\Http\Requests\User\UserIndexRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserResourceCollection;
@@ -16,7 +17,6 @@ use App\Domain\User\UserFilter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 /**
@@ -26,10 +26,10 @@ use Illuminate\Http\Response;
 class UserController extends Controller
 {
     /**
-     * @param Request $request
+     * @param UserIndexRequest $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(UserIndexRequest $request): JsonResponse
     {
         $filter = UserFilter::fromRequest($request);
         $order = Order::fromRequest($request, User::ALLOWED_SORT_FIELDS);

@@ -34,11 +34,11 @@ abstract class AbstractEloquentRepository implements InterfaceRepository
     /**
      * @var Filter|null
      */
-    protected ?Filter $filter;
+    protected ?Filter $filter = null;
     /**
      * @var Order|null
      */
-    protected ?Order $order;
+    protected ?Order $order = null;
     /**
      * @var string
      */

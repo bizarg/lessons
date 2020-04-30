@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['as' => 'api.'], function () {
+Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
     Route::group(['prefix' => 'auth', 'as' => 'auth.', 'namespace' => 'Auth'], function () {
         Route::post('/login', 'AuthorizationController@login')->name('login');
         Route::post('/refresh', 'AuthorizationController@refreshToken')->name('refresh');
@@ -29,3 +29,4 @@ Route::group(['as' => 'api.'], function () {
         'users' => 'UserController'
     ]);
 });
+//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');

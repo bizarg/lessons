@@ -9,7 +9,7 @@ use App\Application\Article\GetArticleList\GetArticleList;
 use App\Application\Article\RegisterArticle\RegisterArticle;
 use App\Application\Article\UpdateArticle\UpdateArticle;
 use App\Domain\Article\Article;
-use App\Http\Controllers\Controller;
+use App\Http\Requests\Article\ArticleIndexRequest;
 use App\Http\Requests\Article\ArticleRequest;
 use App\Http\Resources\Article\ArticleResource;
 use App\Http\Resources\Article\ArticleResourceCollection;
@@ -17,7 +17,6 @@ use App\Domain\Article\ArticleFilter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 /**
@@ -27,10 +26,10 @@ use Illuminate\Http\Response;
 class ArticleController extends Controller
 {
     /**
-     * @param Request $request
+     * @param ArticleIndexRequest $request
      * @return JsonResponse
      */
-    public function index(Request $request): JsonResponse
+    public function index(ArticleIndexRequest $request): JsonResponse
     {
         $filter = ArticleFilter::fromRequest($request);
         $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
@@ -47,7 +46,7 @@ class ArticleController extends Controller
      */
     public function store(ArticleRequest $request): JsonResponse
     {
-        $article = $this->dispatchCommand(RegisterArticle::fromRequest($request));
+        $article = $this->dispatchCommand(RegisterArticle::fromRequest($request, $this->user()));
 
         return response()->json(['data' => new ArticleResource($article)], Response::HTTP_CREATED);
     }
@@ -59,7 +58,7 @@ class ArticleController extends Controller
      */
     public function update(ArticleRequest $request, Article $article): JsonResponse
     {
-        $article = $this->dispatchCommand(UpdateArticle::fromRequest($request, $article));
+        $article = $this->dispatchCommand(UpdateArticle::fromRequest($request, $article, $this->user()));
 
         return response()->json([
             'data' => new ArticleResource($article)

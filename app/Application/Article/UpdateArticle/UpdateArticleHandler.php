@@ -6,6 +6,7 @@ namespace App\Application\Article\UpdateArticle;
 
 use App\Domain\Article\Article;
 use App\Domain\Article\ArticleRepository;
+use App\Domain\Article\ArticleService;
 use Rosamarsky\CommandBus\Command;
 use Rosamarsky\CommandBus\Handler;
 
@@ -19,15 +20,20 @@ class UpdateArticleHandler implements Handler
      * @var ArticleRepository
      */
     private ArticleRepository $articleRepository;
+    /** @var ArticleService */
+    private ArticleService $articleService;
 
     /**
      * UpdateArticleHandler constructor.
      * @param ArticleRepository $articleRepository
+     * @param ArticleService $articleService
      */
     public function __construct(
-        ArticleRepository $articleRepository
+        ArticleRepository $articleRepository,
+        ArticleService $articleService
     ) {
         $this->articleRepository = $articleRepository;
+        $this->articleService = $articleService;
     }
 
     /**
@@ -37,6 +43,8 @@ class UpdateArticleHandler implements Handler
     public function handle(Command $command)
     {
         $article = $command->article();
+
+        $this->articleService->setFromCommand($command, $article);
 
         $this->articleRepository->store($article);
 
