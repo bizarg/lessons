@@ -100,7 +100,7 @@ services:
       PMA_PORT: 3306
 
   queue-worker:
-    image: itdevgroup/php-fpm7.2
+    image: itdevgroup/php-fpm7.4
     restart: always
     entrypoint: /usr/bin/supervisord -n
     depends_on:

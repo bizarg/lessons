@@ -1,0 +1,1 @@
+* * * * * supervisorctl start laravel_schedule >> /usr/local/src/lessons/storage/logs/cron.log 2>&1

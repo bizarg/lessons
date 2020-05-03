@@ -41,5 +41,17 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
                 $query = '%' . strtolower($filter->query()) . '%';
             });
         }
+
+        if ($filter->user()) {
+            $this->builder->where('id', $filter->user());
+        }
+
+        if ($filter->userIdMoreThan()) {
+            $this->builder->where('id', '>', $filter->userIdMoreThan());
+        }
+
+        if ($filter->excludeUsers()) {
+            $this->builder->whereNotIn('id', $filter->excludeUsers());
+        }
     }
 }

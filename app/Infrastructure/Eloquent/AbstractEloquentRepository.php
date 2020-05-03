@@ -17,7 +17,7 @@ use Exception;
  * Class EloquentLeadRepository
  * @package App\Infrastructure\Eloquent
  */
-abstract class AbstractEloquentRepository implements InterfaceRepository
+abstract class AbstractEloquentRepository
 {
     /**
      * @var Model
@@ -43,6 +43,10 @@ abstract class AbstractEloquentRepository implements InterfaceRepository
      * @var string
      */
     protected string $table;
+    /**
+     * @var int|null
+     */
+    protected ?int $limit = null;
 
     /**
      * @param Filter $filter
@@ -73,7 +77,7 @@ abstract class AbstractEloquentRepository implements InterfaceRepository
 
         $this->filterAndOrder();
 
-        return $this->builder->pluck($value);
+        return $this->builder->pluck($value, $key);
     }
 
     /**
@@ -192,6 +196,25 @@ abstract class AbstractEloquentRepository implements InterfaceRepository
     }
 
     /**
+     * @param int $limit
+     * @return void
+     */
+    private function limit(int $limit): void
+    {
+        $this->builder->limit($limit);
+    }
+
+    /**
+     * @param int $limit
+     * @return self
+     */
+    public function setLimit(int $limit): self
+    {
+        $this->limit = $limit;
+        return $this;
+    }
+
+    /**
      * @return void
      */
     private function filterAndOrder(): void
@@ -202,6 +225,10 @@ abstract class AbstractEloquentRepository implements InterfaceRepository
 
         if ($this->order) {
             $this->sort($this->order);
+        }
+
+        if ($this->limit) {
+            $this->limit($this->limit);
         }
 
         $this->reset();

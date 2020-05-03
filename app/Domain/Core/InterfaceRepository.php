@@ -39,10 +39,16 @@ interface InterfaceRepository
      * @param Filter $filter
      * @return self
      */
-    public function setFilter(Filter $filter): self;
+    public function setFilter(Filter $filter);
     /**
      * @param Order $order
      * @return self
      */
-    public function setOrder(Order $order): self;
+    public function setOrder(Order $order);
+
+    /**
+     * @param int $limit
+     * @return self
+     */
+    public function setLimit(int $limit);
 }

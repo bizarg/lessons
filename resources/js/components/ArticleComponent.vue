@@ -45,12 +45,11 @@
         methods: {
             fetchArticles(page_url) {
                 let vm = this;
-                page_url = page_url || 'articles';
+                page_url = page_url || 'api/articles';
 
                 axios.get(page_url)
                     .then((res) => {
-                        this.articles = res.data;
-                        // vm.makePagination(res.meta, res.links);
+                        this.articles = res.data.data;
                 });
 
             },

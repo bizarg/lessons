@@ -27,16 +27,15 @@
   <script>
       $(document).ready(function () {
           var userId = Number(document.getElementById('id').value);
-          console.log(userId);
 
-          Echo.private('App.User.' + userId)
+          Echo.private('App.Domain.User.User.' + userId)
               .notification((notification) => {
-                  console.log(notification,1);
+                  console.log(notification);
               });
 
           Echo.channel('chat')
               .listen('.chat', (e) => {
-                  console.log(e,8);
+                  console.log(e);
               });
       });
   </script>

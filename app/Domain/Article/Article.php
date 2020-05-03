@@ -75,6 +75,15 @@ class Article extends Model
             ->usingLanguage('en')
             ->usingSeparator('_')
             ->saveSlugsTo('slug')
-            ->allowDuplicateSlugs();
+            ->doNotGenerateSlugsOnUpdate();
+
+    }
+
+    /**
+     * @return string
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
     }
 }

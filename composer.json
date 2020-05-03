@@ -10,6 +10,8 @@
     "require": {
         "php": "^7.4",
         "ext-json": "*",
+        "async-aws/sqs": "^0.4.0",
+        "aws/aws-sdk-php-laravel": "^3.5",
         "barryvdh/laravel-debugbar": "^3.3",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",

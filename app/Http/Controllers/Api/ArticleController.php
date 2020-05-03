@@ -9,6 +9,8 @@ use App\Application\Article\GetArticleList\GetArticleList;
 use App\Application\Article\RegisterArticle\RegisterArticle;
 use App\Application\Article\UpdateArticle\UpdateArticle;
 use App\Domain\Article\Article;
+use App\Events\NewArticle;
+use App\Events\NewArticleEvent;
 use App\Http\Requests\Article\ArticleIndexRequest;
 use App\Http\Requests\Article\ArticleRequest;
 use App\Http\Resources\Article\ArticleResource;
@@ -47,6 +49,8 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request): JsonResponse
     {
         $article = $this->dispatchCommand(RegisterArticle::fromRequest($request, $this->user()));
+
+        event(new NewArticleEvent($article));
 
         return response()->json(['data' => new ArticleResource($article)], Response::HTTP_CREATED);
     }
