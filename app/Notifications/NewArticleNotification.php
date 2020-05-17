@@ -75,8 +75,9 @@ class NewArticleNotification extends Notification implements ShouldQueue
     public function toBroadcast(User $notifiable): ?BroadcastMessage
     {
         return new BroadcastMessage([
-            'message' => 'Created new Article ' . $this->article->title
-
+            'title' => 'New Article',
+            'message' => 'Created new Article ' . $this->article->title,
+            'unread' => $notifiable->unreadNotifications()->count()
         ]);
     }
 }

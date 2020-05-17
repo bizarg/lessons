@@ -26,7 +26,7 @@ Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
 
     Route::apiResources([
         'articles' => 'ArticleController',
-        'users' => 'UserController'
+        'users' => 'UserController',
+        'notifications' => 'NotificationController'
     ]);
 });
-//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');//Route::resource('languages', 'LanguageController');

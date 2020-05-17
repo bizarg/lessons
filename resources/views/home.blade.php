@@ -21,23 +21,32 @@
 
 <input type="hidden" id="id" value="{{ $user->id }}">
 
+<notifications group="app"/>
+
 @endsection
 
 @section('js')
   <script>
-      $(document).ready(function () {
-          var userId = Number(document.getElementById('id').value);
-
-          Echo.private('App.Domain.User.User.' + userId)
-              .notification((notification) => {
-                  console.log(notification);
-              });
-
-          Echo.channel('chat')
-              .listen('.chat', (e) => {
-                  console.log(e);
-              });
-      });
+      // $(document).ready(function () {
+      //     var userId = Number(document.getElementById('id').value);
+      //
+      //     Echo.private('App.Domain.User.User.' + userId)
+      //         .notification((notification) => {
+      //             Vue.notify({
+      //                 group: 'app',
+      //                 title: notification.title,
+      //                 text: notification.message,
+      //                 type: 'success'
+      //             });
+      //
+      //             $('.notify-counter').text(notification.unread)
+      //         });
+      //
+      //     Echo.channel('chat')
+      //         .listen('.chat', (e) => {
+      //             console.log(e);
+      //         });
+      // });
   </script>
 @endsection
 

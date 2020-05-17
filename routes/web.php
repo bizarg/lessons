@@ -20,5 +20,6 @@ Route::get('/login/{network}', 'Auth\NetworkController@redirect')->name('login.n
 Route::get('/auth/{network}/callback', 'Auth\NetworkController@callback');
 
 Route::resource('articles', 'ArticleController')->only('edit', 'create', 'index');
+Route::resource('notifications', 'NotificationController')->only('edit', 'create', 'index');
 //Route::get('list', 'ArticleController@list')->name('articles.list');
 //Route::resource('users', 'UserController');
