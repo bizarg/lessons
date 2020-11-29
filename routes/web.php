@@ -19,7 +19,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login/{network}', 'Auth\NetworkController@redirect')->name('login.network');
 Route::get('/auth/{network}/callback', 'Auth\NetworkController@callback');
 
-Route::resource('articles', 'ArticleController')->only('edit', 'create', 'index');
-Route::resource('notifications', 'NotificationController')->only('edit', 'create', 'index');
-//Route::get('list', 'ArticleController@list')->name('articles.list');
-//Route::resource('users', 'UserController');
+Route::resource('articles', 'ArticleController');
+Route::resource('tags', 'TagController');
+Route::resource('notifications', 'NotificationController');
+
+
+

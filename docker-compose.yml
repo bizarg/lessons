@@ -46,6 +46,8 @@ services:
      - redis
     volumes:
      - .:${APP_PROJECT_PATH}
+    environment:
+     - COMPOSER_MEMORY_LIMIT=-1
     working_dir: ${APP_PROJECT_PATH}
     extra_hosts:
      - "localhost:127.0.0.1"

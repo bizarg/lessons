@@ -26,6 +26,6 @@ class ArticleResourceCollection extends ResourceCollectionWithStandardResponse
      */
     protected function getLinksHelperRouteName()
     {
-        return null;
+        return 'articles.index';
     }
 }

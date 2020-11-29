@@ -30,3 +30,4 @@ Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
         'notifications' => 'NotificationController'
     ]);
 });
+//Route::resource('tags', 'TagController');//Route::apiResource('userprojects', 'UserProjectController');

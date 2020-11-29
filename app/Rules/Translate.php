@@ -5,6 +5,10 @@ namespace App\Rules;
 use App\Domain\Language\LanguageRepository;
 use Illuminate\Validation\Factory;
 
+/**
+ * Class Translate
+ * @package App\Rules
+ */
 class Translate
 {
     /**

@@ -6,6 +6,7 @@ namespace App\Http\Resources\Notification;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 /**
  * Class NotificationResource
@@ -19,7 +20,7 @@ class NotificationResource extends JsonResource
      */
     public function toArray($request): array
     {
-        $response = [
+        return [
             'type' => 'notification',
             'id' => $this->id,
             'attributes' => [
@@ -30,7 +31,5 @@ class NotificationResource extends JsonResource
                 'updatedAt' => $this->updated_at,
             ],
         ];
-
-        return $response;
     }
 }

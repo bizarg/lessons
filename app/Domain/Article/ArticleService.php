@@ -21,7 +21,7 @@ class ArticleService
     {
         $article->getSlugOptions();
         $article->setTranslations('title', $command->title());
-        $article->setTranslations('body', $command->title());
+        $article->setTranslations('body', $command->body());
         $article->author_id = $command->author();
     }
 }

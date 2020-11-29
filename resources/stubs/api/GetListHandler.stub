@@ -17,7 +17,7 @@ class Get{{modelName}}ListHandler implements Handler
     /**
      * @var {{modelName}}Repository
      */
-    private {{modelName}}Repository $customerRepository;
+    private {{modelName}}Repository ${{modelNameSingularLowerCase}}Repository;
 
     /**
      * GetLeadStatusListHandler constructor.

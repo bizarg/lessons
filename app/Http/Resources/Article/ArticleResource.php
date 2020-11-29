@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Resources\Article;
 
+use App\Http\Resources\Tag\TagResource;
 use App\Http\Resources\User\UserResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -32,7 +33,11 @@ class ArticleResource extends JsonResource
             ],
         ];
 
-        $response['attributes']['relationships']['author'] = new UserResource($this->author);
+        $response['relationships']['author'] = new UserResource($this->author);
+
+        foreach ($this->tags as $tag) {
+            $response['relationships']['tags'][] = new TagResource($tag);
+        }
 
         return $response;
     }

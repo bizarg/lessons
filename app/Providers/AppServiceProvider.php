@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Domain\Article\Article;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
 
@@ -27,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Passport::routes();
+
+        Route::bind('article', function ($id) {
+            return Article::findOrFail($id);
+        });
     }
 }

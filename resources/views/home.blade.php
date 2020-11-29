@@ -27,6 +27,19 @@
 
 @section('js')
   <script>
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
+
+    $.ajax({
+        url: '{{ route('api.articles.index') }}',
+        type: 'get',
+        success: function (response) {
+            console.log(response);
+        }
+    })
       // $(document).ready(function () {
       //     var userId = Number(document.getElementById('id').value);
       //

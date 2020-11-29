@@ -167,20 +167,20 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param Filter $filter
+     * @param Filter|null $filter
      * @return self
      */
-    public function setFilter(Filter $filter): self
+    public function setFilter(?Filter $filter): self
     {
         $this->filter = $filter;
         return $this;
     }
 
     /**
-     * @param Order $order
+     * @param Order|null $order
      * @return self
      */
-    public function setOrder(Order $order): self
+    public function setOrder(?Order $order): self
     {
         $this->order = $order;
         return $this;

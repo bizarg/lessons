@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Carbon;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Spatie\Tags\HasTags;
 use Spatie\Translatable\HasTranslations;
 
 /**
@@ -39,20 +40,34 @@ use Spatie\Translatable\HasTranslations;
  * @method static Builder|Article whereTitle($value)
  * @method static Builder|Article whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read mixed $translations
+ * @property \Illuminate\Database\Eloquent\Collection|\Spatie\Tags\Tag[] $tags
+ * @property-read int|null $tags_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Article\Article withAllTags($tags, $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Article\Article withAllTagsOfAnyType($tags)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Article\Article withAnyTags($tags, $type = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Article\Article withAnyTagsOfAnyType($tags)
  */
 class Article extends Model
 {
     use HasSlug;
+    use HasTags;
     use HasTranslations;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public const ALLOWED_SORT_FIELDS = [
         'createdAt' => 'articles.created_at'
     ];
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $table = 'articles';
-    /** @var array */
+    /**
+     * @var array
+     */
     public array $translatable = ['title', 'body'];
 
     /**
@@ -85,5 +100,14 @@ class Article extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    /**
+     * @return void
+     */
+    protected static function booted(): void
+    {
+        static::deleting(function ($article) {
+        });
     }
 }

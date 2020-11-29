@@ -18,6 +18,7 @@ use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class NotificationController

@@ -36,15 +36,15 @@ interface InterfaceRepository
      */
     public function delete(Model $model): void;
     /**
-     * @param Filter $filter
+     * @param Filter|null $filter
      * @return self
      */
-    public function setFilter(Filter $filter);
+    public function setFilter(?Filter $filter);
     /**
-     * @param Order $order
+     * @param Order|null $order
      * @return self
      */
-    public function setOrder(Order $order);
+    public function setOrder(?Order $order);
 
     /**
      * @param int $limit

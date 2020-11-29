@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Domain\Article\ArticleRepository;
 use App\Domain\Language\LanguageRepository;
 use App\Domain\Notification\NotificationRepository;
+use App\Domain\Tag\TagRepository;
 use App\Domain\User\UserRepository;
 use App\Infrastructure\Eloquent\EloquentArticleRepository;
 use App\Infrastructure\Eloquent\EloquentLanguageRepository;
 use App\Infrastructure\Eloquent\EloquentNotificationRepository;
+use App\Infrastructure\Eloquent\EloquentTagRepository;
 use App\Infrastructure\Eloquent\EloquentUserRepository;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
@@ -42,5 +44,6 @@ class DomainServiceProvider extends ServiceProvider
         $this->app->singleton(UserRepository::class, EloquentUserRepository::class);
         $this->app->singleton(LanguageRepository::class, EloquentLanguageRepository::class);
         $this->app->singleton(NotificationRepository::class, EloquentNotificationRepository::class);
+        $this->app->singleton(TagRepository::class, EloquentTagRepository::class);
     }
 }

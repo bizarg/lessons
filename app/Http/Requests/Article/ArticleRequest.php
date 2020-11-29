@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
  * @property string $title
  * @property string $body
  * @property int $author
+ * @property array|null $tags
  */
 class ArticleRequest extends FormRequest
 {
@@ -30,7 +31,9 @@ class ArticleRequest extends FormRequest
                 'nullable',
                 'integer',
                 Rule::exists('users')
-            ]
+            ],
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|string|max:40'
         ];
     }
 }

@@ -21,21 +21,26 @@ class RegisterArticle implements Command
     private array $body;
     /** @var int */
     private int $author;
+    /** @var array|null */
+    private ?array $tags;
 
     /**
      * RegisterArticle constructor.
      * @param array $title
      * @param array $body
      * @param int $author
+     * @param array|null $tags
      */
     public function __construct(
         array $title,
         array $body,
-        int $author
+        int $author,
+        ?array $tags
     ) {
         $this->title = $title;
         $this->body = $body;
         $this->author = $author;
+        $this->tags = $tags;
     }
 
     /**
@@ -48,7 +53,8 @@ class RegisterArticle implements Command
         return (new self(
             $request->title,
             $request->body,
-            $request->author ?? $user->id
+            $request->author ?? $user->id,
+            $request->tags
         ));
     }
 
@@ -68,5 +74,11 @@ class RegisterArticle implements Command
     public function author(): int
     {
         return $this->author;
+    }
+
+    /** @return array|null */
+    public function tags(): ?array
+    {
+        return $this->tags;
     }
 }

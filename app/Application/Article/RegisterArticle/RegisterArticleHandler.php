@@ -48,6 +48,8 @@ class RegisterArticleHandler implements Handler
 
         $this->articleRepository->store($article);
 
+        $article->attachTags($command->tags());
+
         return $article;
     }
 }

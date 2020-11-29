@@ -26,6 +26,6 @@ class NotificationResourceCollection extends ResourceCollectionWithStandardRespo
      */
     protected function getLinksHelperRouteName()
     {
-        return null;
+        return 'notifications.index';
     }
 }

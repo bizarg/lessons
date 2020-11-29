@@ -78,7 +78,7 @@ class Pagination
      */
     public static function getPageNumberFromRequest(Request $request)
     {
-        return Arr::get($request, 'page', self::DEFAULT_PAGE);
+        return Arr::get($request->get('page'), 'number', self::DEFAULT_PAGE);
     }
 
     /**
@@ -87,6 +87,6 @@ class Pagination
      */
     public static function getPerPageFromRequest(Request $request)
     {
-        return Arr::get($request, 'perPage', self::DEFAULT_PER_PAGE);
+        return Arr::get($request->get('page'), 'size', self::DEFAULT_PER_PAGE);
     }
 }
