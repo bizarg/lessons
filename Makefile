@@ -26,16 +26,13 @@ migrate-back:
 	docker-compose exec php-fpm php artisan migrate:rollback
 
 fresh:
-	docker-compose exec php-fpm php artisan migrate:fresh --seed
+	docker-compose exec php-fpm php artisan migrate:fresh --seed && docker-compose exec php-fpm php artisan passport:install
 
 ide-models:
 	docker-compose exec php-fpm php artisan ide-helper:models
 
 clear:
 	docker-compose exec php-fpm php artisan cache:clear && docker-compose exec php-fpm php artisan route:clear && docker-compose exec php-fpm php artisan config:clear && docker-compose exec php-fpm php artisan view:clear
-
-composer-dump:
-	docker-compose exec php-fpm composer dumpautoload
 
 dumpautoload:
 	docker-compose exec php-fpm composer dumpautoload
