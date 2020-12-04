@@ -1,0 +1,48 @@
+
+namespace {{namespace}}\Infrastructure\Eloquent;
+
+use {{domainPath}}\Core\Filter;
+use {{domainPath}}\{{modelName}}\{{modelName}};
+use {{domainPath}}\{{modelName}}\{{modelName}}Filter;
+use {{domainPath}}\{{modelName}}\{{modelName}}Repository;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\DB;
+
+/**
+ * Class Eloquent{{modelName}}Repository
+ * @package {{namespace}}\Infrastructure\Eloquent
+ */
+class {{repositoryFilePrefix}}{{modelName}}Repository extends AbstractEloquentRepository implements {{modelName}}Repository
+{
+    /**
+     * @var string
+     */
+    protected string $table = '{{modelNamePluralLowerCaseUnderscore}}.';
+
+    /**
+     * Eloquent{{modelName}}Repository constructor.
+     * @param {{modelName}} $model
+     * @param Application $app
+     */
+    public function __construct(
+        {{modelName}} $model,
+        Application $app
+    ) {
+        $this->model = $model;
+        $this->app = $app;
+    }
+
+    /**
+     * @param Filter|{{modelName}}Filter $filter
+     * @return void
+     */
+    protected function filter(Filter $filter): void
+    {
+        if ($filter->query()) {
+            $this->builder->where(function (Builder $builder) use ($filter) {
+                $query = '%' . strtolower($filter->query()) . '%';
+            });
+        }
+    }
+}

@@ -1,0 +1,42 @@
+
+namespace {{commandPath}}\{{modelName}}\Update{{modelName}};
+
+use {{domainPath}}\{{modelName}}\{{modelName}};
+use {{domainPath}}\{{modelName}}\{{modelName}}Repository;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
+
+/**
+ * Class Update{{modelName}}Handler
+ * @package {{commandPath}}\{{modelName}}\Update{{modelName}}
+ */
+class Update{{modelName}}Handler implements Handler
+{
+    /**
+     * @var {{modelName}}Repository
+     */
+    private {{modelName}}Repository ${{modelNameSingularLowerCaseFirst}}Repository;
+
+    /**
+     * Update{{modelName}}Handler constructor.
+     * @param {{modelName}}Repository ${{modelNameSingularLowerCaseFirst}}Repository
+     */
+    public function __construct(
+        {{modelName}}Repository ${{modelNameSingularLowerCaseFirst}}Repository
+    ) {
+        $this->{{modelNameSingularLowerCaseFirst}}Repository = ${{modelNameSingularLowerCaseFirst}}Repository;
+    }
+
+    /**
+     * @param Command|Update{{modelName}} $command
+     * @return {{modelName}}
+     */
+    public function handle(Command $command): {{modelName}}
+    {
+        ${{modelNameSingularLowerCaseFirst}} = $command->{{modelNameSingularLowerCaseFirst}}();
+
+        $this->{{modelNameSingularLowerCaseFirst}}Repository->store(${{modelNameSingularLowerCaseFirst}});
+
+        return ${{modelNameSingularLowerCaseFirst}};
+    }
+}

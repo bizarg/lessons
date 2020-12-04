@@ -15,7 +15,7 @@ use Illuminate\Foundation\Application;
  * Class EloquentArticleRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentArticleRepository extends AbstractEloquentRepository implements ArticleRepository
+class EloquentArticleRepository extends AbstractEloquentRepository
 {
     /** @var string */
     protected string $table = 'articles.';

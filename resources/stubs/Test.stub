@@ -1,28 +1,25 @@
-<?php
-
-declare(strict_types=1);
 
 use Illuminate\Http\Response;
-use Tests\Feature\TestCase as BaseTestCase;
+use {{testPath}}\TestCase as BaseTestCase;
 
 /**
- * Class projectTest
- * @package Tests\Feature
+ * Class {{modelName}}Test
+ * @package {{testPath}}
  */
-class projectTest extends BaseTestCase
+class {{modelName}}Test extends BaseTestCase
 {
     /**
      * @test
      */
-    public function shouldIndexproject()
+    public function shouldIndex{{modelName}}()
     {
         $this->signIn();
 
         $this
-            ->json('get', route('api.projects.index'), [], $this->headers())
+            ->json('get', route('api.{{modelNamePluralLowerCaseHyphen}}.index'), [], $this->headers())
             ->assertJson([
                 'data' => [
-                    ['type' => 'project']
+                    ['type' => '{{modelNameSingularLowerCaseFirst}}']
                 ]
             ])
             ->assertJsonStructure([
@@ -47,13 +44,13 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldFilterIndexproject()
+    public function shouldFilterIndex{{modelName}}()
     {
         $this->signIn();
         $data = ['filter' => ['query' => '']];
 
         $this
-            ->json('get', route('api.projects.index'), $data, $this->headers())
+            ->json('get', route('api.{{modelNamePluralLowerCaseHyphen}}.index'), $data, $this->headers())
             ->assertJson([
                 'data' => [
                 ]
@@ -68,16 +65,16 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldShowproject()
+    public function shouldShow{{modelName}}()
     {
         $this->signIn();
         $show = 1;
 
         $this
-            ->json('get', route('api.projects.show', $show), [], $this->headers())
+            ->json('get', route('api.{{modelNamePluralLowerCaseHyphen}}.show', $show), [], $this->headers())
             ->assertJson([
                 'data' => [
-                    'type' => 'project',
+                    'type' => '{{modelNameSingularLowerCaseFirst}}',
                     'id' => $show,
                 ]
             ])
@@ -87,29 +84,29 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldStoreproject()
+    public function shouldStore{{modelName}}()
     {
         $this->signIn();
         $data = [];
 
         $this
-            ->json('post', route('api.projects.store'), $data, $this->headers())
+            ->json('post', route('api.{{modelNamePluralLowerCaseHyphen}}.store'), $data, $this->headers())
             ->assertJson(['data' => []])
             ->assertStatus(Response::HTTP_CREATED);
 
-        $this->assertDatabaseHas('projects', [
+        $this->assertDatabaseHas('{{modelNamePluralLowerCaseUnderscore}}', [
         ]);
     }
 
     /**
      * @test
      */
-    public function shouldErrorStoreproject()
+    public function shouldErrorStore{{modelName}}()
     {
         $this->signIn();
 
         $this
-            ->json('post', route('api.projects.store'), [], $this->headers())
+            ->json('post', route('api.{{modelNamePluralLowerCaseHyphen}}.store'), [], $this->headers())
             ->assertJson([
                 'errors' => [
                 ]
@@ -120,7 +117,7 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldUpdateproject()
+    public function shouldUpdate{{modelName}}()
     {
         $this->signIn();
         $update = 1;
@@ -128,11 +125,11 @@ class projectTest extends BaseTestCase
         ];
 
         $this
-            ->json('put', route('api.projects.update', $update), $data, $this->headers())
+            ->json('put', route('api.{{modelNamePluralLowerCaseHyphen}}.update', $update), $data, $this->headers())
             ->assertJson(['data' => []])
             ->assertStatus(Response::HTTP_OK);
 
-        $this->assertDatabaseHas('projects', [
+        $this->assertDatabaseHas('{{modelNamePluralLowerCaseUnderscore}}', [
             'id' => $update
         ]);
     }
@@ -140,13 +137,13 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldErrorUpdateproject()
+    public function shouldErrorUpdate{{modelName}}()
     {
         $this->signIn();
         $update = 1;
 
         $this
-            ->json('put', route('api.projects.update', $update), [], $this->headers())
+            ->json('put', route('api.{{modelNamePluralLowerCaseHyphen}}.update', $update), [], $this->headers())
             ->assertJson([
                 'errors' => [
                 ]
@@ -157,28 +154,28 @@ class projectTest extends BaseTestCase
     /**
      * @test
      */
-    public function shouldDeleteproject()
+    public function shouldDelete{{modelName}}()
     {
         $this->signIn();
         $delete = 1;
 
         $this
-            ->json('delete', route('api.projects.destroy', $delete), [], $this->headers())
+            ->json('delete', route('api.{{modelNamePluralLowerCaseHyphen}}.destroy', $delete), [], $this->headers())
             ->assertStatus(Response::HTTP_NO_CONTENT);
 
-        $this->assertDatabaseMissing('projects', ['id' => $delete]);
+        $this->assertDatabaseMissing('{{modelNamePluralLowerCaseUnderscore}}', ['id' => $delete]);
     }
 
     /**
      * @test
      */
-    public function shouldErrorsDeleteproject()
+    public function shouldErrorsDelete{{modelName}}()
     {
         $this->signIn();
         $delete = 999;
 
         $this
-            ->json('delete', route('api.projects.destroy', $delete), [], $this->headers())
+            ->json('delete', route('api.{{modelNamePluralLowerCaseHyphen}}.destroy', $delete), [], $this->headers())
             ->assertJson([
                 'errors' => [
                     $this->errorPageNotFound()

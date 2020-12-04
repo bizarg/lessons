@@ -31,3 +31,10 @@ Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
     ]);
 });
 //Route::resource('tags', 'TagController');//Route::apiResource('userprojects', 'UserProjectController');
+        //  Route::group(['prefix' => 'projects', 'as' => 'project.'], function () {
+        //      Route::get('/', 'ProjectController@index')->name('index');
+        //      Route::post('/', 'ProjectController@store')->name('store');
+        //      Route::put('{project}', 'ProjectController@update')->name('update')->where('project', '[0-9]+');
+        //      Route::get('{project}', 'ProjectController@show')->name('show')->where('project', '[0-9]+');
+        //      Route::delete('{project}', 'ProjectController@destroy')->name('delete')->where('project', '[0-9]+');
+        //  });

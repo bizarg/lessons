@@ -1,0 +1,12 @@
+
+namespace {{domainPath}}\{{modelName}};
+
+use {{domainPath}}\Core\InterfaceRepository;
+
+/**
+ * Interface {{modelName}}Repository
+ * @package {{domainPath}}\{{modelName}}
+ */
+interface {{modelName}}Repository extends InterfaceRepository
+{
+}
