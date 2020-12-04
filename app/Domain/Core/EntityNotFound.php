@@ -2,11 +2,13 @@
 
 namespace App\Domain\Core;
 
+use Exception;
+
 /**
  * Class EntityNotFound
  * @package App\Domain\Core
  */
-abstract class EntityNotFound extends \Exception
+abstract class EntityNotFound extends Exception
 {
     /**
      * EntityNotFound constructor.
