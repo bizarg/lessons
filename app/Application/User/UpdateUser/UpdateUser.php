@@ -7,7 +7,7 @@ namespace App\Application\User\UpdateUser;
 use App\Domain\User\User;
 use App\Http\Requests\User\UserRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class UpdateUser

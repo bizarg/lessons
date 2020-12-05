@@ -3,7 +3,7 @@
 namespace App\Application\Authorization\Login;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class Login

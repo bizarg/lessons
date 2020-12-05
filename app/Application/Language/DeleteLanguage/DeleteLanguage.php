@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Language\DeleteLanguage;
 
 use App\Domain\Language\Language;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class DeleteLanguage

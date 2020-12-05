@@ -2,7 +2,7 @@
 
 namespace App\Application\Authorization\Logout;
 
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class Logout

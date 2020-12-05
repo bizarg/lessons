@@ -37,7 +37,7 @@ class EloquentLanguageRepository extends AbstractEloquentRepository implements L
      * @param Filter|LanguageFilter $filter
      * @return void
      */
-    protected function filter(Filter $filter): void
+    protected function filter($filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {

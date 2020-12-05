@@ -7,8 +7,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\CommandBus;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\CommandBus;
 
 /**
  * Class Controller

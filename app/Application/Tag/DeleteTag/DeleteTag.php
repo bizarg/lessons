@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Tag\DeleteTag;
 
 use App\Domain\Tag\Tag;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class DeleteTag

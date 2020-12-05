@@ -7,7 +7,7 @@ namespace App\Application\User\GetUserList;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Domain\User\UserFilter;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class GetUserList

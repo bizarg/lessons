@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Article\GetArticleList;
 
 use App\Domain\Article\ArticleRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class GetArticleListHandler

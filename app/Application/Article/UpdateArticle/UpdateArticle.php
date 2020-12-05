@@ -8,7 +8,7 @@ use App\Domain\Article\Article;
 use App\Domain\User\User;
 use App\Http\Requests\Article\ArticleRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class UpdateArticle

@@ -3,15 +3,12 @@
 namespace App\Infrastructure\Eloquent;
 
 use App\Domain\Core\Filter;
-use App\Domain\Core\InterfaceRepository;
 use App\Domain\Core\Order;
-use App\Domain\Core\Pagination;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
-use Exception;
 
 /**
  * Class EloquentLeadRepository
@@ -22,7 +19,7 @@ abstract class AbstractEloquentRepository
     /**
      * @var Model
      */
-    protected Model $model;
+    protected $model;
     /**
      * @var Application
      */
@@ -34,11 +31,11 @@ abstract class AbstractEloquentRepository
     /**
      * @var Filter|null
      */
-    protected ?Filter $filter = null;
+    protected $filter = null;
     /**
      * @var Order|null
      */
-    protected ?Order $order = null;
+    protected $order = null;
     /**
      * @var string
      */
@@ -52,10 +49,10 @@ abstract class AbstractEloquentRepository
      * @param Filter $filter
      * @return void
      */
-    abstract protected function filter(Filter $filter): void;
+    abstract protected function filter($filter): void;
 
     /**
-     * @return Collection
+     * @inheritDoc
      */
     public function collection(): Collection
     {
@@ -67,9 +64,7 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param string $value
-     * @param string|null $key
-     * @return Collection
+     * @inheritDoc
      */
     public function pluck(string $value, ?string $key = null): Collection
     {
@@ -81,10 +76,29 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param Pagination $pagination
-     * @return LengthAwarePaginator
+     * @inheritDoc
      */
-    public function paginate(Pagination $pagination): LengthAwarePaginator
+    public function exists(string $value, ?string $key = null): bool
+    {
+        $this->builder = $this->model->newQuery();
+
+        $this->filterAndOrder();
+
+        return $this->builder->exists();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function byId(int $id)
+    {
+        return $this->model->newQuery()->find($id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function pagination($pagination): LengthAwarePaginator
     {
         $this->builder = $this->model->newQuery();
 
@@ -94,9 +108,9 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @return Model|null
+     * @inheritDoc
      */
-    public function single(): ?Model
+    public function first()
     {
         $this->builder = $this->model->newQuery();
 
@@ -106,107 +120,55 @@ abstract class AbstractEloquentRepository
     }
 
     /**
-     * @param Order|null $order
-     * @return void
+     * @inheritDoc
      */
-    protected function sort(?Order $order): void
+    public function count(): int
     {
-        $table = collect(explode('.', $order->field()))->first();
+        $this->builder = $this->model->newQuery();
 
-        if ($this->table != $table . '.') {
-            $this->{'join' . ucfirst($table)}();
-        }
+        $this->filterAndOrder();
 
-        $this->builder->orderBy($order->field(), $order->direction());
+        return $this->builder->count();
     }
 
     /**
-     * Store entity
-     *
-     * @param Model $model
-     * @return void
+     * @inheritDoc
      */
-    public function store(Model $model): void
+    public function store($model): void
     {
         $this->model = $model;
         $this->model->save();
     }
 
     /**
-     * Delete entity
-     *
-     * @param Model $model
-     * @return void
-     * @throws Exception
+     * @inheritDoc
      */
-    public function delete(Model $model): void
+    public function delete($model): void
     {
         $this->model = $model;
         $this->model->delete();
     }
 
     /**
-     * @param string $table
-     * @return bool
+     * @inheritDoc
      */
-    protected function hasJoin(string $table): bool
-    {
-        $joins = $this->builder->getQuery()->joins;
-
-        if($joins == null) {
-            return false;
-        }
-
-        foreach ($joins as $join) {
-            if ($join->table == $table) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * @param Filter|null $filter
-     * @return self
-     */
-    public function setFilter(?Filter $filter): self
+    public function setFilter($filter): self
     {
         $this->filter = $filter;
         return $this;
     }
 
     /**
-     * @param Order|null $order
-     * @return self
+     * @inheritDoc
      */
-    public function setOrder(?Order $order): self
+    public function setOrder($order): self
     {
         $this->order = $order;
         return $this;
     }
 
     /**
-     * @return void
-     */
-    public function reset(): void
-    {
-        $this->filter = null;
-        $this->order = null;
-    }
-
-    /**
-     * @param int $limit
-     * @return void
-     */
-    private function limit(int $limit): void
-    {
-        $this->builder->limit($limit);
-    }
-
-    /**
-     * @param int $limit
-     * @return self
+     * @inheritDoc
      */
     public function setLimit(int $limit): self
     {
@@ -217,7 +179,7 @@ abstract class AbstractEloquentRepository
     /**
      * @return void
      */
-    private function filterAndOrder(): void
+    protected function filterAndOrder(): void
     {
         if ($this->filter) {
             $this->filter($this->filter);
@@ -232,5 +194,35 @@ abstract class AbstractEloquentRepository
         }
 
         $this->reset();
+    }
+
+    /**
+     * @param string $table
+     * @return bool
+     */
+    protected function hasJoin(string $table): bool
+    {
+        $joins = $this->builder->getQuery()->joins;
+
+        if ($joins == null) {
+            return false;
+        }
+
+        foreach ($joins as $join) {
+            if ($join->table == $table) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return void
+     */
+    protected function reset(): void
+    {
+        $this->filter = null;
+        $this->order = null;
     }
 }

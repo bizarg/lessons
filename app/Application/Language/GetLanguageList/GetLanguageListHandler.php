@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Language\GetLanguageList;
 
 use App\Domain\Language\LanguageRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class GetLanguageListHandler

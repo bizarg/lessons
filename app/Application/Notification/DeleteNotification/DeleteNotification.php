@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Notification\DeleteNotification;
 
 use App\Domain\Notification\Notification;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class DeleteNotification

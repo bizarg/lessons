@@ -7,8 +7,8 @@ use Laravel\Passport\Exceptions\OAuthServerException;
 use Laravel\Passport\Http\Controllers\HandlesOAuthErrors;
 use Laravel\Passport\TokenRepository;
 use Lcobucci\JWT\Parser as JwtParser;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 use Zend\Diactoros\Response as Psr7Response;
 use League\OAuth2\Server\AuthorizationServer;
 

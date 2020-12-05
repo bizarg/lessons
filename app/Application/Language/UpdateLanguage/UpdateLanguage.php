@@ -7,7 +7,7 @@ namespace App\Application\Language\UpdateLanguage;
 use App\Domain\Language\Language;
 use App\Http\Requests\Language\LanguageRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class UpdateLanguage

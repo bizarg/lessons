@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\Tag\DeleteTag;
 
 use App\Domain\Tag\TagRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class DeleteTagHandler

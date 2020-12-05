@@ -7,7 +7,7 @@ namespace App\Application\Tag\UpdateTag;
 use App\Domain\Tag\Tag;
 use App\Http\Requests\Tag\TagRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class UpdateTag

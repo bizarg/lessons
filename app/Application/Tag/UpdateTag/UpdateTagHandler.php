@@ -6,8 +6,8 @@ namespace App\Application\Tag\UpdateTag;
 
 use App\Domain\Tag\Tag;
 use App\Domain\Tag\TagRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class UpdateTagHandler

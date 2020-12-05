@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\User\DeleteUser;
 
 use App\Domain\User\User;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class DeleteUser

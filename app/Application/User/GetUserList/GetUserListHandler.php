@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Application\User\GetUserList;
 
 use App\Domain\User\UserRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class GetUserListHandler

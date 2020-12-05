@@ -7,7 +7,7 @@ namespace App\Application\Article\GetArticleList;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Domain\Article\ArticleFilter;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class GetArticleList

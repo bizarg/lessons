@@ -6,8 +6,8 @@ namespace App\Application\User\UpdateUser;
 
 use App\Domain\User\User;
 use App\Domain\User\UserRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class UpdateUserHandler

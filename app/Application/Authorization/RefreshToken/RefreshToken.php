@@ -3,7 +3,7 @@
 namespace App\Application\Authorization\RefreshToken;
 
 use Psr\Http\Message\ServerRequestInterface;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RefreshToken

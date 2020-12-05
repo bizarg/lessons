@@ -7,7 +7,7 @@ namespace App\Application\Notification\UpdateNotification;
 use App\Domain\Notification\Notification;
 use App\Http\Requests\Notification\NotificationRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class UpdateNotification

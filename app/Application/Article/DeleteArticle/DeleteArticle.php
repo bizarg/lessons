@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Application\Article\DeleteArticle;
 
 use App\Domain\Article\Article;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class DeleteArticle

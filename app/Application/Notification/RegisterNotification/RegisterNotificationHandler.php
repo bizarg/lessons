@@ -6,8 +6,8 @@ namespace App\Application\Notification\RegisterNotification;
 
 use App\Domain\Notification\Notification;
 use App\Domain\Notification\NotificationRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class RegisterNotificationHandler

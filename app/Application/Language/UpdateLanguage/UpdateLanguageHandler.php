@@ -6,8 +6,8 @@ namespace App\Application\Language\UpdateLanguage;
 
 use App\Domain\Language\Language;
 use App\Domain\Language\LanguageRepository;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class UpdateLanguageHandler

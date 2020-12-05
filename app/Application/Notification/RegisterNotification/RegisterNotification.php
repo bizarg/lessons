@@ -6,7 +6,7 @@ namespace App\Application\Notification\RegisterNotification;
 
 use App\Http\Requests\Notification\NotificationRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RegisterNotification

@@ -3,8 +3,8 @@
 namespace App\Application\Authorization\Logout;
 
 use Laravel\Passport\Token;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class LogoutHandler

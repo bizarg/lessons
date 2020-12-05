@@ -7,7 +7,7 @@ namespace App\Application\Tag\GetTagList;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Domain\Tag\TagFilter;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class GetTagList

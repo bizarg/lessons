@@ -7,7 +7,7 @@ namespace App\Application\Notification\GetNotificationList;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Domain\Notification\NotificationFilter;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class GetNotificationList

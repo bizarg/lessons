@@ -7,7 +7,7 @@ namespace App\Application\Article\RegisterArticle;
 use App\Domain\User\User;
 use App\Http\Requests\Article\ArticleRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RegisterArticle

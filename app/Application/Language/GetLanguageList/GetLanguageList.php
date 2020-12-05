@@ -7,7 +7,7 @@ namespace App\Application\Language\GetLanguageList;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
 use App\Domain\Language\LanguageFilter;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class GetLanguageList

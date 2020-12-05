@@ -7,8 +7,8 @@ namespace App\Application\Article\RegisterArticle;
 use App\Domain\Article\Article;
 use App\Domain\Article\ArticleRepository;
 use App\Domain\Article\ArticleService;
-use Rosamarsky\CommandBus\Command;
-use Rosamarsky\CommandBus\Handler;
+use ItDevgroup\CommandBus\Command;
+use ItDevgroup\CommandBus\Handler;
 
 /**
  * Class RegisterArticleHandler

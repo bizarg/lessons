@@ -6,7 +6,7 @@ namespace App\Application\Tag\RegisterTag;
 
 use App\Http\Requests\Tag\TagRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RegisterTag

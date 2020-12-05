@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'namespace' => 'api',
+    'namespace' => 'app',
     'paths' => [
         'domain' => 'Domain',
         'command' => 'Application',
@@ -12,8 +12,7 @@ return [
         'migrate' => 'database/migrations',
         'test' => 'tests/Feature',
         'doc' => 'api-doc',
-        'stub' => 'resources/stubs',
-        ''
+        'stub' => null,
     ],
     'repositoryFilePrefix' => 'Eloquent',
     'generate' => [

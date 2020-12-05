@@ -6,7 +6,7 @@ namespace App\Application\Language\RegisterLanguage;
 
 use App\Http\Requests\Language\LanguageRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RegisterLanguage

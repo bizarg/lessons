@@ -24,17 +24,20 @@ Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
         });
     });
 
-    Route::apiResources([
-        'articles' => 'ArticleController',
-        'users' => 'UserController',
-        'notifications' => 'NotificationController'
-    ]);
+    Route::group(['middleware' => 'auth:api'], function () {
+        Route::group(['prefix' => 'user-projects', 'as' => 'userProject.'], function () {
+            Route::get('/', 'UserProjectController@index')->name('index');
+            Route::post('/', 'UserProjectController@store')->name('store');
+            Route::put('{userProject}', 'UserProjectController@update')->name('update')->where('userProject', '[0-9]+');
+            Route::get('{userProject}', 'UserProjectController@show')->name('show')->where('userProject', '[0-9]+');
+            Route::delete('{userProject}', 'UserProjectController@destroy')->name('delete')->where('userProject', '[0-9]+');
+        });
+
+
+        Route::apiResources([
+            'articles' => 'ArticleController',
+            'users' => 'UserController',
+            'notifications' => 'NotificationController'
+        ]);
+    });
 });
-//Route::resource('tags', 'TagController');//Route::apiResource('userprojects', 'UserProjectController');
-        //  Route::group(['prefix' => 'projects', 'as' => 'project.'], function () {
-        //      Route::get('/', 'ProjectController@index')->name('index');
-        //      Route::post('/', 'ProjectController@store')->name('store');
-        //      Route::put('{project}', 'ProjectController@update')->name('update')->where('project', '[0-9]+');
-        //      Route::get('{project}', 'ProjectController@show')->name('show')->where('project', '[0-9]+');
-        //      Route::delete('{project}', 'ProjectController@destroy')->name('delete')->where('project', '[0-9]+');
-        //  });

@@ -6,7 +6,7 @@ namespace App\Application\User\RegisterUser;
 
 use App\Http\Requests\User\UserRequest;
 use Illuminate\Http\Request;
-use Rosamarsky\CommandBus\Command;
+use ItDevgroup\CommandBus\Command;
 
 /**
  * Class RegisterUser

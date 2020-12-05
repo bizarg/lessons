@@ -15,7 +15,7 @@ use Illuminate\Foundation\Application;
  * Class EloquentArticleRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentArticleRepository extends AbstractEloquentRepository
+class EloquentArticleRepository extends AbstractEloquentRepository implements ArticleRepository
 {
     /** @var string */
     protected string $table = 'articles.';
@@ -37,7 +37,7 @@ class EloquentArticleRepository extends AbstractEloquentRepository
      * @param Filter|ArticleFilter $filter
      * @return void
      */
-    protected function filter(Filter $filter): void
+    protected function filter($filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {
