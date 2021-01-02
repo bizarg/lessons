@@ -4,19 +4,29 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Eloquent;
 
-use App\Domain\Core\Filter;
 use App\Domain\User\User;
-use App\Domain\User\UserFilter;
 use App\Domain\User\UserRepository;
+use Bizarg\Repository\Contract\Filter;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
+use Bizarg\Repository\AbstractRepository;
 
 /**
  * Class EloquentUserRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentUserRepository extends AbstractEloquentRepository implements UserRepository
+class EloquentUserRepository extends AbstractRepository implements UserRepository
 {
+    /**
+     * @var User|Model
+     */
+    protected Model $model;
+    /**
+     * @var Application
+     */
+    private Application $app;
+
     /**
      * EloquentLeadRepository constructor.
      * @param User $model
@@ -31,7 +41,7 @@ class EloquentUserRepository extends AbstractEloquentRepository implements UserR
     }
 
     /**
-     * @param Filter|UserFilter $filter
+     * @param Filter $filter
      * @return void
      */
     protected function filter(Filter $filter): void

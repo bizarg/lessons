@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * Class TagFilter
  * @package App\Domain\Tag
  */
-class TagFilter implements Filter
+class TagFilter extends Filter
 {
     /**
      * @var string|null

@@ -9,7 +9,7 @@ use Illuminate\Support\Arr;
  * Class Pagination
  * @package App\Domain\Core
  */
-class Pagination
+class Pagination implements \Bizarg\Repository\Contract\Pagination
 {
     /**
      * Default page and per page values.

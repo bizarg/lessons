@@ -123,6 +123,7 @@ abstract class TestCase extends BaseTestCase
 
             $this->artisan('migrate');
             $this->artisan('db:seed');
+            $this->artisan('passport:install');
 
             copy('./storage/db/testdb.sqlite', './storage/db/testdb-example.sqlite');
             chmod('./storage/db/testdb-example.sqlite', 0777);

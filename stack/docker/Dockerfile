@@ -1,4 +1,4 @@
-FROM itdevgroup/php-fpm7.2
+FROM itdevgroup/php-fpm7.4
 
 ARG INSTALL_XDEBUG=false
 

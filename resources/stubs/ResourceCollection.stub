@@ -1,0 +1,28 @@
+
+namespace {{resourcePath}}\{{modelName}};
+
+use {{resourcePath}}\ResourceCollectionWithStandardResponse;
+
+/**
+ * Class {{modelName}}ResourceCollection
+ * @package {{resourcePath}}\{{modelName}}
+ */
+class {{modelName}}ResourceCollection extends ResourceCollectionWithStandardResponse
+{
+    /**
+     * @param object $item
+     * @return {{modelName}}Resource
+     */
+    protected function getItemData($item): {{modelName}}Resource
+    {
+        return new {{modelName}}Resource($item);
+    }
+
+    /**
+     * @return null|string
+     */
+    protected function getLinksHelperRouteName()
+    {
+        return null;
+    }
+}

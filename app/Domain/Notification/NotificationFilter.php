@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * Class NotificationFilter
  * @package App\Domain\Notification
  */
-class NotificationFilter implements Filter
+class NotificationFilter extends Filter
 {
     /** @var string|null */
     private ?string $query;

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * Class LanguageFilter
  * @package App\Domain\Language
  */
-class LanguageFilter implements Filter
+class LanguageFilter extends Filter
 {
     /** @var string|null */
     private ?string $query;

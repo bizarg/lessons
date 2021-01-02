@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
  * Class Order
  * @package App\Domain\Core
  */
-class Order
+class Order implements \Bizarg\Repository\Contract\Order
 {
     /**
      * Define sort

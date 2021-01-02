@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
  * Class UserFilter
  * @package App\Domain\User
  */
-class UserFilter implements Filter
+class UserFilter extends Filter
 {
     /** @var string|null */
     private ?string $query = null;

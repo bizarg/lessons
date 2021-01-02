@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use App\Domain\Article\Article;
+use App\Domain\Skill\Skill;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -60,14 +62,29 @@ class User extends Authenticatable
         'createdAt' => 'users.created_at'
     ];
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $table = 'users';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     protected $fillable = ['name', 'email', 'password'];
 
-    public function articles()
+//    /**
+//     * @return BelongsToMany
+//     */
+//    public function articles(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Article::class, 'author_id', 'id');
+//    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function skills(): BelongsToMany
     {
-        return $this->belongsToMany(Article::class, 'author_id', 'id');
+        return $this->belongsToMany(Skill::class, 'skill_user', 'user_id', 'skill_id');
     }
 }
