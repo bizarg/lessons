@@ -19,13 +19,9 @@ use Bizarg\Repository\AbstractRepository;
 class EloquentUserRepository extends AbstractRepository implements UserRepository
 {
     /**
-     * @var User|Model
+     * @var string
      */
-    protected Model $model;
-    /**
-     * @var Application
-     */
-    private Application $app;
+    protected string $table = 'users.';
 
     /**
      * EloquentLeadRepository constructor.
