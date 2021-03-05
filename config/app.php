@@ -169,6 +169,7 @@ return [
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Bizarg\Crud\CrudServiceProvider::class,
+        Bizarg\VariableParser\VariableParserServiceProvider::class,
         ItDevgroup\CommandBus\CommandBusServiceProvider::class,
 
         /*
