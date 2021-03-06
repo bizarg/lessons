@@ -8,6 +8,7 @@ use App\Domain\Core\Filter;
 use App\Domain\Tag\Tag;
 use App\Domain\Tag\TagFilter;
 use App\Domain\Tag\TagRepository;
+use Bizarg\Repository\AbstractRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
 
@@ -15,7 +16,7 @@ use Illuminate\Foundation\Application;
  * Class EloquentTagRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentTagRepository extends AbstractEloquentRepository implements TagRepository
+class EloquentTagRepository extends AbstractRepository implements TagRepository
 {
 	/** @var string */
 	protected string $table = 'tags.';
@@ -37,7 +38,7 @@ class EloquentTagRepository extends AbstractEloquentRepository implements TagRep
      * @param Filter|TagFilter $filter
      * @return void
      */
-    protected function filter(Filter $filter): void
+    protected function filter($filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {

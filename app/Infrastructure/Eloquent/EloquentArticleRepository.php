@@ -38,7 +38,7 @@ class EloquentArticleRepository extends AbstractRepository implements ArticleRep
      * @param Filter|ArticleFilter $filter
      * @return void
      */
-    protected function filter(Filter $filter): void
+    protected function filter($filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {

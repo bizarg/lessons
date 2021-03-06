@@ -15,8 +15,10 @@
         "barryvdh/laravel-debugbar": "^3.3",
         "bizarg/crud-generator": "1.5.3",
         "bizarg/repository": "^1.1",
+        "bizarg/sqlite-test": "^1.0",
         "bizarg/type-helper": "dev-master",
         "bizarg/variable-parser": "^1.0",
+        "doctrine/dbal": "^2.12",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
@@ -30,8 +32,7 @@
         "rap2hpoutre/laravel-log-viewer": "^1.4",
         "spatie/laravel-sluggable": "^2.4",
         "spatie/laravel-tags": "^2.6",
-        "spatie/laravel-translatable": "^4.3",
-        "doctrine/dbal": "^2.12"
+        "spatie/laravel-translatable": "^4.3"
     },
     "require-dev": {
         "orangehill/iseed": "^2.6",

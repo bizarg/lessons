@@ -22,13 +22,10 @@ services:
     command: "/bin/bash /entrypoint.sh"
 
   php-fpm:
-    build:
-      context: ./stack/docker
-      args:
-        INSTALL_XDEBUG: 'true'
+    image: itdevgroup/php-fpm7.4
     volumes:
       - .:/usr/local/src/lessons.local
-      - ./stack/docker/xdebug.ini:/etc/php/7.2/mods-available/xdebug.ini
+#      - ./stack/docker/xdebug.ini:/etc/php/7.4/mods-available/xdebug.ini
     working_dir: /usr/local/src/lessons.local
     extra_hosts:
       - "accounts:127.0.0.1"
