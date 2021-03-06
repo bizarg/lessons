@@ -4,10 +4,11 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Eloquent;
 
-use App\Domain\Core\Filter;
 use App\Domain\Notification\Notification;
 use App\Domain\Notification\NotificationFilter;
 use App\Domain\Notification\NotificationRepository;
+use Bizarg\Repository\AbstractRepository;
+use App\Domain\Core\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
 
@@ -15,7 +16,7 @@ use Illuminate\Foundation\Application;
  * Class EloquentNotificationRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentNotificationRepository extends AbstractEloquentRepository implements NotificationRepository
+class EloquentNotificationRepository extends AbstractRepository implements NotificationRepository
 {
 	/** @var string */
 	protected string $table = 'notifications.';
@@ -37,7 +38,7 @@ class EloquentNotificationRepository extends AbstractEloquentRepository implemen
      * @param Filter|NotificationFilter $filter
      * @return void
      */
-    protected function filter(Filter $filter): void
+    protected function filter($filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {

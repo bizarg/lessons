@@ -8,6 +8,7 @@ use App\Domain\Core\Filter;
 use App\Domain\Article\Article;
 use App\Domain\Article\ArticleFilter;
 use App\Domain\Article\ArticleRepository;
+use Bizarg\Repository\AbstractRepository;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
 
@@ -15,7 +16,7 @@ use Illuminate\Foundation\Application;
  * Class EloquentArticleRepository
  * @package App\Infrastructure\Eloquent
  */
-class EloquentArticleRepository extends AbstractEloquentRepository implements ArticleRepository
+class EloquentArticleRepository extends AbstractRepository implements ArticleRepository
 {
     /** @var string */
     protected string $table = 'articles.';
@@ -37,7 +38,7 @@ class EloquentArticleRepository extends AbstractEloquentRepository implements Ar
      * @param Filter|ArticleFilter $filter
      * @return void
      */
-    protected function filter($filter): void
+    protected function filter(Filter $filter): void
     {
         if ($filter->query()) {
             $this->builder->where(function (Builder $builder) use ($filter) {

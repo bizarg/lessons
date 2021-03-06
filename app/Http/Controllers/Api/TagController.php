@@ -26,7 +26,7 @@ use Illuminate\Http\Response;
 class TagController extends Controller
 {
     /**
-     * @param Request $request
+     * @param TagIndexRequest $request
      * @return JsonResponse
      */
     public function index(TagIndexRequest $request): JsonResponse

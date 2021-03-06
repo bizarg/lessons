@@ -16,6 +16,7 @@
         "bizarg/crud-generator": "1.5.3",
         "bizarg/repository": "^1.1",
         "bizarg/type-helper": "dev-master",
+        "bizarg/variable-parser": "^1.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",

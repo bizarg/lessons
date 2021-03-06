@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\User\GetUserList;
 
-use App\Domain\User\UserRepository;
+use App\Infrastructure\Eloquent\EloquentUserRepository;
+use Exception;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use ItDevgroup\CommandBus\Command;
 use ItDevgroup\CommandBus\Handler;
 
@@ -15,28 +17,30 @@ use ItDevgroup\CommandBus\Handler;
 class GetUserListHandler implements Handler
 {
     /**
-     * @var UserRepository
+     * @var EloquentUserRepository
      */
-    private UserRepository $customerRepository;
+    private EloquentUserRepository $userRepository;
 
     /**
      * GetLeadStatusListHandler constructor.
-     * @param UserRepository $userRepository
+     * @param EloquentUserRepository $userRepository
      */
     public function __construct(
-        UserRepository $userRepository
+        EloquentUserRepository $userRepository
     ) {
         $this->userRepository = $userRepository;
     }
+
     /**
-     * Handle a Command object
-     *
-     * @param Command|GetUserList $command
-     * @return mixed
+     * @param Command $command
+     * @return LengthAwarePaginator|mixed
+     * @throws Exception
      */
     public function handle(Command $command)
     {
-		return $this->userRepository->setFilter($command->filter())->setOrder($command->order())
-			->paginate($command->pagination());
+		return $this->userRepository
+            ->setFilter($command->filter())
+            ->setOrder($command->order())
+			->pagination($command->pagination());
     }
 }

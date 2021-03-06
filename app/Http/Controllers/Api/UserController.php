@@ -35,7 +35,7 @@ class UserController extends Controller
         $order = Order::fromRequest($request, User::ALLOWED_SORT_FIELDS);
         $pagination = Pagination::fromRequest($request);
 
-        $users = $this->dispatch(new GetUserList($filter, $pagination, $order));
+        $users = $this->dispatchCommand(new GetUserList($filter, $pagination, $order));
 
         return response()->json(new UserResourceCollection($users), Response::HTTP_OK);
     }

@@ -13,7 +13,11 @@ use App\Http\Requests\User\UserRequest;
 use App\Domain\User\UserFilter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
-use App\Http\Requests\Request;
+use App\Http\Resources\User\UserResource;
+use App\Http\Resources\User\UserResourceCollection;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 /**
  * Class UserController
@@ -31,7 +35,7 @@ class UserController extends Controller
         $order = Order::fromRequest($request, User::ALLOWED_SORT_FIELDS);
         $pagination = Pagination::fromRequest($request);
 
-        $users = $this->dispatch(new GetUserList($filter, $pagination, $order));
+        $users = $this->dispatchCommand(new GetUserList($filter, $pagination, $order));
 
         return response()->json(new UserResourceCollection($users), Response::HTTP_OK);
     }
@@ -42,7 +46,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request): JsonResponse
     {
-        $user = $this->dispatch(RegisterUser::fromRequest($request));
+        $user = $this->dispatchCommand(RegisterUser::fromRequest($request));
 
         return response()->json(['data' => new UserResource($user)], Response::HTTP_CREATED);
     }
@@ -54,7 +58,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $user): JsonResponse
     {
-        $user = $this->dispatch(UpdateUser::fromRequest($request, $user));
+        $user = $this->dispatchCommand(UpdateUser::fromRequest($request, $user));
 
         return response()->json([
             'data' => new UserResource($user)
@@ -76,7 +80,7 @@ class UserController extends Controller
      */
     public function destroy(User $user): JsonResponse
     {
-        $this->dispatch(new DeleteUser($user));
+        $this->dispatchCommand(new DeleteUser($user));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
     }

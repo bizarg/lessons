@@ -17,7 +17,7 @@ class GetArticleListHandler implements Handler
     /**
      * @var ArticleRepository
      */
-    private ArticleRepository $customerRepository;
+    private ArticleRepository $articleRepository;
 
     /**
      * GetLeadStatusListHandler constructor.
@@ -37,6 +37,6 @@ class GetArticleListHandler implements Handler
     public function handle(Command $command)
     {
 		return $this->articleRepository->setFilter($command->filter())->setOrder($command->order())
-			->paginate($command->pagination());
+			->pagination($command->pagination());
     }
 }

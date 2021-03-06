@@ -9,7 +9,6 @@ use App\Application\Article\GetArticleList\GetArticleList;
 use App\Application\Article\RegisterArticle\RegisterArticle;
 use App\Application\Article\UpdateArticle\UpdateArticle;
 use App\Domain\Article\Article;
-use App\Events\NewArticle;
 use App\Events\NewArticleEvent;
 use App\Http\Requests\Article\ArticleIndexRequest;
 use App\Http\Requests\Article\ArticleRequest;

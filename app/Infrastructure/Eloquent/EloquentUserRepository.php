@@ -8,7 +8,6 @@ use App\Domain\User\User;
 use App\Domain\User\UserRepository;
 use Bizarg\Repository\Contract\Filter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Application;
 use Bizarg\Repository\AbstractRepository;
 

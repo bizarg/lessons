@@ -17,7 +17,7 @@ class GetNotificationListHandler implements Handler
     /**
      * @var NotificationRepository
      */
-    private NotificationRepository $customerRepository;
+    private NotificationRepository $notificationRepository;
 
     /**
      * GetLeadStatusListHandler constructor.
@@ -37,6 +37,6 @@ class GetNotificationListHandler implements Handler
     public function handle(Command $command)
     {
 		return $this->notificationRepository->setFilter($command->filter())->setOrder($command->order())
-			->paginate($command->pagination());
+			->pagination($command->pagination());
     }
 }
