@@ -41,11 +41,32 @@ Route::group(['as' => 'api.', 'middleware' => ['localization']], function () {
             Route::delete('{skill}', 'SkillController@destroy')->name('delete')->where('skill', '[0-9]+');
         });
 
+        Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
+            Route::put('{user}/role', 'UserController@updateUserRole')->name('update.role');
+        });
+
+//        Route::group(['prefix' => 'roles', 'as' => 'roles.'], function () {
+//            Route::get('/', 'RoleController@index')->name('index');
+//            Route::post('/', 'RoleController@store')->name('store');
+//            Route::put('{role}', 'RoleController@update')->name('update')->where('role', '[0-9]+');
+//            Route::get('{role}', 'RoleController@show')->name('show')->where('role', '[0-9]+');
+//            Route::delete('{role}', 'RoleController@destroy')->name('delete')->where('role', '[0-9]+');
+//        });
+
+        //  Route::group(['prefix' => 'permissions', 'as' => 'permissions.'], function () {
+        //      Route::get('/', 'PermissionController@index')->name('index');
+        //      Route::post('/', 'PermissionController@store')->name('store');
+        //      Route::put('{permission}', 'PermissionController@update')->name('update')->where('permission', '[0-9]+');
+        //      Route::get('{permission}', 'PermissionController@show')->name('show')->where('permission', '[0-9]+');
+        //      Route::delete('{permission}', 'PermissionController@destroy')->name('delete')->where('permission', '[0-9]+');
+        //  });
+
         Route::apiResources([
             'articles' => 'ArticleController',
             'users' => 'UserController',
-            'notifications' => 'NotificationController'
+            'notifications' => 'NotificationController',
+            'roles' => 'RoleController',
+            'permissions' => 'PermissionController'
         ]);
     });
 });
-

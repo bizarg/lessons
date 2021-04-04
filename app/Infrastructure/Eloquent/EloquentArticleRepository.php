@@ -9,6 +9,7 @@ use App\Domain\Article\Article;
 use App\Domain\Article\ArticleFilter;
 use App\Domain\Article\ArticleRepository;
 use Bizarg\Repository\AbstractRepository;
+use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Application;
 

@@ -2,12 +2,12 @@
 
 namespace App\Domain\Core;
 
-use Bizarg\Repository\Contract\Filter as FilterAlias;
+use Bizarg\Repository\Contract\Filter as InterfaceFilter;
 
 /**
  * Interface InterfaceRepository
  * @package Api\Domain\Core
  */
-Class Filter implements FilterAlias
+Class Filter implements InterfaceFilter
 {
 }

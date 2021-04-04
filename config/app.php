@@ -171,6 +171,8 @@ return [
         Bizarg\Crud\CrudServiceProvider::class,
         Bizarg\VariableParser\VariableParserServiceProvider::class,
         ItDevgroup\CommandBus\CommandBusServiceProvider::class,
+        Spatie\Permission\PermissionServiceProvider::class,
+
 
         /*
          * Application Service Providers...

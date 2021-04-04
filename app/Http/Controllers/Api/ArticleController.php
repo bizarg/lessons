@@ -9,6 +9,7 @@ use App\Application\Article\GetArticleList\GetArticleList;
 use App\Application\Article\RegisterArticle\RegisterArticle;
 use App\Application\Article\UpdateArticle\UpdateArticle;
 use App\Domain\Article\Article;
+use App\Domain\User\User;
 use App\Events\NewArticleEvent;
 use App\Http\Requests\Article\ArticleIndexRequest;
 use App\Http\Requests\Article\ArticleRequest;
@@ -17,6 +18,8 @@ use App\Http\Resources\Article\ArticleResourceCollection;
 use App\Domain\Article\ArticleFilter;
 use App\Domain\Core\Order;
 use App\Domain\Core\Pagination;
+use App\Infrastructure\Services\VariableData;
+use Bizarg\VariableParser\VariableParser;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
@@ -32,13 +35,23 @@ class ArticleController extends Controller
      */
     public function index(ArticleIndexRequest $request): JsonResponse
     {
-        $filter = ArticleFilter::fromRequest($request);
-        $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
-        $pagination = Pagination::fromRequest($request);
+//        $filter = ArticleFilter::fromRequest($request);
+//        $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
+//        $pagination = Pagination::fromRequest($request);
+//        $articles = $this->dispatchCommand(new GetArticleList($filter, $pagination, $order));
 
-        $articles = $this->dispatchCommand(new GetArticleList($filter, $pagination, $order));
 
-        return response()->json(new ArticleResourceCollection($articles), Response::HTTP_OK);
+        $variableData = (new VariableData());
+//            ->setArticle(Article::find(1))
+//            ->setUser(User::find(1));
+
+        $content = 'Name: [[user.Name]]<br>Email: [[userEmail]]<br>Title: [[articleTitle]]<br>Slug: [[articleSlug]]<br>';
+
+        $parser = new VariableParser($content, $variableData);
+        $parser->setData(['user.Name' => 'UserName']);
+        dd($parser->parseContent());
+
+//        return response()->json(new ArticleResourceCollection($articles), Response::HTTP_OK);
     }
 
     /**

@@ -20,3 +20,4 @@ _ide_helper.php
 config/ide-helper.php
 /package
 composer.lock
+_ide_helper_models.php

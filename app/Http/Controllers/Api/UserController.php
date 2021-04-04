@@ -8,7 +8,9 @@ use App\Application\User\DeleteUser\DeleteUser;
 use App\Application\User\GetUserList\GetUserList;
 use App\Application\User\RegisterUser\RegisterUser;
 use App\Application\User\UpdateUser\UpdateUser;
+use App\Domain\Role\Role;
 use App\Domain\User\User;
+use App\Http\Requests\User\UpdateUserRoleRequest;
 use App\Http\Requests\User\UserIndexRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Resources\User\UserResource;
@@ -83,5 +85,17 @@ class UserController extends Controller
         $this->dispatch(new DeleteUser($user));
 
         return response()->json(null, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @param UpdateUserRoleRequest $request
+     * @param User $user
+     * @return JsonResponse
+     */
+    public function updateUserRole(UpdateUserRoleRequest $request, User $user): JsonResponse
+    {
+        $user->syncRoles(Role::find($request->roles ?? []));
+
+        return new JsonResponse([], Response::HTTP_ACCEPTED);
     }
 }

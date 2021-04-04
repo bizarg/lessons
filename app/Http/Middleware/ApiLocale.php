@@ -41,9 +41,7 @@ class ApiLocale
     public function handle($request, Closure $next)
     {
         $defaultLocaleCode = 'en';
-        $localeCodes = $this->languageRepository->collection()
-            ->pluck('code')
-            ->toArray();
+        $localeCodes = $this->languageRepository->pluck('code')->toArray();
         $localeCode = $request->hasHeader('X-localization') ? $request->header('X-localization') : $defaultLocaleCode;
         $localeCode = in_array($localeCode, $localeCodes) ? $localeCode : $defaultLocaleCode;
         $this->app->setLocale($localeCode);

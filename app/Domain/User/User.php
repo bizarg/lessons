@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
 use Laravel\Passport\Client;
 use Laravel\Passport\HasApiTokens;
 use Laravel\Passport\Token;
+use Spatie\Permission\Traits\HasRoles;
 
 /**
  * Class User
@@ -56,6 +57,7 @@ class User extends Authenticatable
 {
     use Notifiable;
     use HasApiTokens;
+    use HasRoles;
 
     /** @var array */
     public const ALLOWED_SORT_FIELDS = [
