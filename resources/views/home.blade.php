@@ -21,25 +21,36 @@
 
 <input type="hidden" id="id" value="{{ $user->id }}">
 
+    <form id="message-store" action="{{route('api.messages.store')}}">
+      <input type="text" name="message">
+      <input type="text" name="room" value="2">
+      <input type="submit" value="send">
+    </form>
+
 <notifications group="app"/>
 
 @endsection
 
 @section('js')
   <script>
-      $.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      });
+      // $.ajaxSetup({
+      //     headers: {
+      //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+      //         'X-XSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      //     }
+      // });
 
-    $.ajax({
-        url: '{{ route('api.articles.index') }}',
-        type: 'get',
-        success: function (response) {
-            console.log(response);
-        }
-    })
+    axios.get('/api/articles').then(
+        response => (console.log(response))
+    );
+
+    {{--$.ajax({--}}
+    {{--    url: '{{ route('api.articles.index') }}',--}}
+    {{--    type: 'get',--}}
+    {{--    success: function (response) {--}}
+    {{--        console.log(response);--}}
+    {{--    }--}}
+    {{--})--}}
       // $(document).ready(function () {
       //     var userId = Number(document.getElementById('id').value);
       //

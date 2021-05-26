@@ -75,7 +75,9 @@ class TestNotification extends Notification implements ShouldBroadcast, ShouldQu
     public function toBroadcast()
     {
         return new BroadcastMessage([
-            'string' => $this->string,
+            'title' => $this->string,
+            'message' => 'text',
+            'unread' => rand()
         ]);
     }
 }

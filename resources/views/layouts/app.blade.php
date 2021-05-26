@@ -49,10 +49,18 @@
 
       Echo.private('App.Domain.User.User.' + userId)
           .notification((notification) => {
+              console.log(notification);
               Vue.notify({
                   group: 'app',
                   title: notification.title,
                   text: notification.message,
+                  type: 'success'
+              });
+
+              Vue.notify({
+                  group: 'app',
+                  title: 123,
+                  text: 123,
                   type: 'success'
               });
 

@@ -37,9 +37,5 @@ class AppServiceProvider extends ServiceProvider
         Passport::routes();
         Passport::withoutCookieSerialization();
         Blade::withoutDoubleEncoding();
-
-        Route::bind('article', function ($id) {
-            return Article::findOrFail($id);
-        });
     }
 }

@@ -45,7 +45,9 @@ class TestEvent implements ShouldBroadcastNow
     public function broadcastWith()
     {
         return [
-            'data' => 'key'
+            'data' => 'key',
+            'name' => 'name',
+            'message' => $this->message
         ];
     }
 

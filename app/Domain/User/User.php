@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Domain\User;
 
 use App\Domain\Article\Article;
+use App\Domain\Room\Room;
 use App\Domain\Skill\Skill;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -52,6 +53,14 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder|User whereRememberToken($value)
  * @method static Builder|User whereUpdatedAt($value)
  * @mixin Eloquent
+ * @property-read Collection|\Spatie\Permission\Models\Permission[] $permissions
+ * @property-read int|null $permissions_count
+ * @property-read Collection|\Spatie\Permission\Models\Role[] $roles
+ * @property-read int|null $roles_count
+ * @property-read Collection|Skill[] $skills
+ * @property-read int|null $skills_count
+ * @method static Builder|User permission($permissions)
+ * @method static Builder|User role($roles, $guard = null)
  */
 class User extends Authenticatable
 {
@@ -88,5 +97,13 @@ class User extends Authenticatable
     public function skills(): BelongsToMany
     {
         return $this->belongsToMany(Skill::class, 'skill_user', 'user_id', 'skill_id');
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function rooms(): BelongsToMany
+    {
+        return $this->belongsToMany(Room::class, 'room_user', 'user_id', 'room_id');
     }
 }

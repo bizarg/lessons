@@ -8,15 +8,18 @@ use App\Domain\Language\LanguageRepository;
 use App\Domain\Notification\NotificationRepository;
 use App\Domain\Permission\PermissionRepository;
 use App\Domain\Role\RoleRepository;
+use App\Domain\Room\RoomRepository;
 use App\Domain\Skill\SkillRepository;
 use App\Domain\Tag\TagRepository;
 use App\Domain\User\UserRepository;
 use App\Infrastructure\Eloquent\EloquentArticleRepository;
 use App\Infrastructure\Eloquent\EloquentCategoryRepository;
 use App\Infrastructure\Eloquent\EloquentLanguageRepository;
+use App\Infrastructure\Eloquent\EloquentMessageRepository;
 use App\Infrastructure\Eloquent\EloquentNotificationRepository;
 use App\Infrastructure\Eloquent\EloquentPermissionRepository;
 use App\Infrastructure\Eloquent\EloquentRoleRepository;
+use App\Infrastructure\Eloquent\EloquentRoomRepository;
 use App\Infrastructure\Eloquent\EloquentSkillRepository;
 use App\Infrastructure\Eloquent\EloquentTagRepository;
 use App\Infrastructure\Eloquent\EloquentUserRepository;
@@ -57,5 +60,6 @@ class DomainServiceProvider extends ServiceProvider
         $this->app->singleton(SkillRepository::class, EloquentSkillRepository::class);
         $this->app->singleton(RoleRepository::class, EloquentRoleRepository::class);
         $this->app->singleton(PermissionRepository::class, EloquentPermissionRepository::class);
+        $this->app->singleton(RoomRepository::class, EloquentRoomRepository::class);
     }
 }

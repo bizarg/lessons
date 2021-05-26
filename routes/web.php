@@ -19,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/login/{network}', 'Auth\NetworkController@redirect')->name('login.network');
 Route::get('/auth/{network}/callback', 'Auth\NetworkController@callback');
 
-Route::resource('articles', 'ArticleController');
+Route::resource('articles', 'ArticleController')->only(['index', 'show', 'edit', 'create']);
 Route::resource('tags', 'TagController');
 Route::resource('notifications', 'NotificationController');
 

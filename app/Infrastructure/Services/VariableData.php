@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Services;
 
 use App\Domain\Article\Article;
+use App\Domain\Role\Role;
 use App\Domain\User\User;
 
 /**
@@ -19,6 +20,10 @@ class VariableData
      * @var Article|null
      */
     private ?Article $article = null;
+    /**
+     * @var Role|null
+     */
+    private ?Role $role = null;
 
     /**
      * @return User|null
@@ -53,6 +58,24 @@ class VariableData
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+        return $this;
+    }
+
+    /**
+     * @return Role|null
+     */
+    public function role(): ?Role
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param Role|null $role
+     * @return self
+     */
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
         return $this;
     }
 }

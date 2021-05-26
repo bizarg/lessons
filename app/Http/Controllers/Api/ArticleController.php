@@ -9,6 +9,7 @@ use App\Application\Article\GetArticleList\GetArticleList;
 use App\Application\Article\RegisterArticle\RegisterArticle;
 use App\Application\Article\UpdateArticle\UpdateArticle;
 use App\Domain\Article\Article;
+use App\Domain\Role\Role;
 use App\Domain\User\User;
 use App\Events\NewArticleEvent;
 use App\Http\Requests\Article\ArticleIndexRequest;
@@ -35,23 +36,12 @@ class ArticleController extends Controller
      */
     public function index(ArticleIndexRequest $request): JsonResponse
     {
-//        $filter = ArticleFilter::fromRequest($request);
-//        $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
-//        $pagination = Pagination::fromRequest($request);
-//        $articles = $this->dispatchCommand(new GetArticleList($filter, $pagination, $order));
+        $filter = ArticleFilter::fromRequest($request);
+        $order = Order::fromRequest($request, Article::ALLOWED_SORT_FIELDS);
+        $pagination = Pagination::fromRequest($request);
+        $articles = $this->dispatchCommand(new GetArticleList($filter, $pagination, $order));
 
-
-        $variableData = (new VariableData());
-//            ->setArticle(Article::find(1))
-//            ->setUser(User::find(1));
-
-        $content = 'Name: [[user.Name]]<br>Email: [[userEmail]]<br>Title: [[articleTitle]]<br>Slug: [[articleSlug]]<br>';
-
-        $parser = new VariableParser($content, $variableData);
-        $parser->setData(['user.Name' => 'UserName']);
-        dd($parser->parseContent());
-
-//        return response()->json(new ArticleResourceCollection($articles), Response::HTTP_OK);
+        return response()->json(new ArticleResourceCollection($articles), Response::HTTP_OK);
     }
 
     /**
